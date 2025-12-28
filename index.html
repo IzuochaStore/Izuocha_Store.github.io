@@ -1,13 +1,20 @@
 
 <!doctype html>
 <html lang="es">
-<head>
+
+
+
+
+  
+<head> <!-- Define metadatos y configuración global del documento:
+  codificación, título, descripción, estilos, favicons y recursos que se cargan antes del contenido visual. -->
+  
   <meta charset="utf-8" /> <!-- Codificación UTF-8 para soportar acentos y caracteres especiales -->
   <meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- Escala móvil: ancho igual al dispositivo -->
   <title>Izuocha Store - Catálogo</title> <!-- Título de la pestaña del navegador -->
   <meta name="description" content="Catálogo de productos anime: stickers, vasos, gashapons, acrílicos y más." /> <!-- Descripción para SEO -->
 
-  <style>
+  <style> /* INICIO CSS */
     :root{--accent:#1f8ef1;--card:#fff;--muted:#666} /* Variables de color reutilizables */
     *{box-sizing:border-box} /* Incluye padding/border en el tamaño total de los elementos */
     body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif;margin:0;background:#f4f6f8;color:#111} /* Tipografía y colores base */
@@ -60,12 +67,17 @@
       .thumb{height:160px} /* Imagen principal más baja en móvil */
       .modal .sheet{flex-direction:column} /* Modal apilado en columnas en móvil */
     }
-  </style>
+    /* FIN CSS */
+  </style> 
 
-  <link rel="icon" type="image/png" href="images/favicon.png"> <!-- Favicon del sitio, mostrado en la pestaña -->
+  <link rel="icon" type="image/png" href="images/favicon.png"> <!-- Favicon del sitio se muestra en la pestaña -->
 </head>
 
-<body>
+
+
+
+  
+<body> <!-- Contiene el contenido visible y la estructura de la página: encabezado, navegación, secciones, modales y pie de página. -->
   <header>
     <div class="brand">Tienda-Apodo (nombre-de-la-tienda)</div> <!-- Nombre visible de la tienda -->
     <nav style="display:flex;gap:10px;align-items:center"> <!-- Navegación simple: enlaces principales -->
@@ -130,150 +142,169 @@
 
   <footer id="contacto">Instagram: <a id="igFooter" href="#" target="_blank">@mi_tienda</a> — Facebook: <a id="fbFooter" href="#" target="_blank">Mi Tienda</a></footer> <!-- Footer con enlaces de contacto -->
 
-  <script>
-    // ----------------- Datos de ejemplo: edítalos en el repo (products array) -----------------
-    // Subir imágenes a /images y usar rutas como "images/nombre.jpg"
-    const products = [
+  <script> //Implementa la lógica interactiva: lectura de datos, render dinámico, filtros, búsqueda, apertura/cierre de modales y carrusel.
+    
+     <script> // INICIO JS
+    const products = [ /* Array de productos: edítalo con tus datos reales */
       {
-        id: "ID Producto",
-        title: "Titulo",
-        price: "Precio",
-        anime: "Nombre Anime",
-        type: "Tipo",
-        stock: 2,
-        description: "Descripcion",
-        images: ["images/favicon.png"]
+        id: "ID Producto", /* Identificador único para referencia interna */
+        title: "Titulo", /* Nombre que se muestra en tarjeta y modal */
+        price: "Precio", /* Precio (puede ser número o texto formateado) */
+        anime: "Nombre Anime", /* Categoría por anime (ej: Naruto) */
+        type: "Tipo", /* Tipo de producto (Sticker, Vaso, etc.) */
+        stock: 2, /* Cantidad disponible para mostrar */
+        description: "Descripcion", /* Descripción larga mostrada en el modal */
+        images: ["images/favicon.png"] /* Rutas relativas a /images/, máximo 8 por producto */
       }
-      // Añade más objetos aquí.
+      // Añade más objetos aquí. /* Inserta más productos siguiendo esta estructura */
     ];
 
-    // Config (edita con el nombre real de tus enlaces)
-    const CONFIG = {
-      storeName: 'Izuocha Store', // aparecerá en el header
-      instagram: 'https://www.instagram.com/izuocha_store',
-      facebook: 'https://www.facebook.com/share/1EmFKH8sZk/'
+    const CONFIG = { /* Configuración global de la tienda: nombre y enlaces */
+      storeName: 'Izuocha Store', /* Aparece en el header (.brand) */
+      instagram: 'https://www.instagram.com/izuocha_store', /* Enlaces de contacto en modal y footer */
+      facebook: 'https://www.facebook.com/share/1EmFKH8sZk/' /* Enlace a Facebook */
     };
 
-    // ----------------- Lógica de render -----------------
-    document.querySelector('.brand').textContent = CONFIG.storeName;
-    document.getElementById('igFooter').href = CONFIG.instagram;
-    document.getElementById('fbFooter').href = CONFIG.facebook;
-    document.getElementById('igLink').href = CONFIG.instagram;
-    document.getElementById('fbLink').href = CONFIG.facebook;
+    /* Inserta nombre y enlaces en el DOM al cargar */
+    document.querySelector('.brand').textContent = CONFIG.storeName; /* Actualiza el nombre visible */
+    document.getElementById('igFooter').href = CONFIG.instagram; /* Footer Instagram */
+    document.getElementById('fbFooter').href = CONFIG.facebook; /* Footer Facebook */
+    document.getElementById('igLink').href = CONFIG.instagram; /* Modal Instagram */
+    document.getElementById('fbLink').href = CONFIG.facebook; /* Modal Facebook */
 
-    const productsGrid = document.getElementById('productsGrid');
-    const resultsCount = document.getElementById('resultsCount');
-    const categoriesList = document.getElementById('categoriesList');
-    const searchInput = document.getElementById('searchInput');
+    /* Referencias rápidas a contenedores clave */
+    const productsGrid = document.getElementById('productsGrid'); /* Contenedor de tarjetas */
+    const resultsCount = document.getElementById('resultsCount'); /* Span del contador de resultados */
+    const categoriesList = document.getElementById('categoriesList'); /* Lista de categorías en sidebar */
+    const searchInput = document.getElementById('searchInput'); /* Input de búsqueda */
 
-    // Deriva categorías desde products
-    const categories = Array.from(new Set(products.map(p=>p.anime))).sort();
-    const cats = ['Todos', ...categories, 'Otros'];
-    let activeCat = 'Todos';
+    /* Obtiene categorías únicas desde los productos y arma la lista completa */
+    const categories = Array.from(new Set(products.map(p=>p.anime))).sort(); /* Categorías únicas ordenadas */
+    const cats = ['Todos', ...categories, 'Otros']; /* Agrega 'Todos' y 'Otros' a la lista principal */
+    let activeCat = 'Todos'; /* Estado actual de la categoría seleccionada */
 
-    function renderCategories(){
-      categoriesList.innerHTML = '';
+    function renderCategories(){ /* Dibuja la lista de categorías y marca la activa */
+      categoriesList.innerHTML = ''; /* Limpia la lista antes de volver a crearla */
       cats.forEach(c=>{
-        const li = document.createElement('li');
-        li.textContent = c;
-        if(c===activeCat) li.classList.add('active');
-        li.onclick = ()=>{ activeCat=c; renderCategories(); renderProducts(); }
-        categoriesList.appendChild(li);
+        const li = document.createElement('li'); /* Crea un ítem de lista */
+        li.textContent = c; /* Texto visible de la categoría */
+        if(c===activeCat) li.classList.add('active'); /* Resalta si es la activa */
+        li.onclick = ()=>{ /* Al hacer clic: cambia la activa y re-renderiza */
+          activeCat=c; renderCategories(); renderProducts();
+        };
+        categoriesList.appendChild(li); /* Inserta el ítem en la lista */
       });
     }
 
-    function matchesFilter(p, q){
-      if(activeCat!=='Todos' && activeCat!=='Otros'){
-        if(p.anime!==activeCat) return false;
+    function matchesFilter(p, q){ /* Valida si un producto coincide con la categoría y búsqueda */
+      if(activeCat!=='Todos' && activeCat!=='Otros'){ /* Caso: categoría específica (anime) */
+        if(p.anime!==activeCat) return false; /* Filtra productos que no sean del anime elegido */
       }
-      if(activeCat==='Otros'){
-        // "Otros" = productos que no tengan anime en la lista de categorías detectadas
-        if(categories.includes(p.anime)) return false;
+      if(activeCat==='Otros'){ /* Caso: categoría 'Otros' */
+        if(categories.includes(p.anime)) return false; /* Excluye los animes conocidos */
       }
-      if(!q) return true;
-      const s = q.toLowerCase();
-      return (p.title+p.description+p.anime+p.type).toLowerCase().includes(s);
+      if(!q) return true; /* Si no hay búsqueda, ya pasó el filtro de categoría */
+      const s = q.toLowerCase(); /* Normaliza la búsqueda a minúsculas */
+      return (p.title+p.description+p.anime+p.type).toLowerCase().includes(s); /* Coincidencia por texto */
     }
 
-    function renderProducts(){
-      const q = searchInput.value.trim();
-      const filtered = products.filter(p => matchesFilter(p, q));
-      productsGrid.innerHTML = '';
-      resultsCount.textContent = filtered.length;
+    function renderProducts(){ /* Construye y muestra las tarjetas del catálogo */
+      const q = searchInput.value.trim(); /* Toma el texto de búsqueda actual */
+      const filtered = products.filter(p => matchesFilter(p, q)); /* Aplica filtros de categoría y texto */
+      productsGrid.innerHTML = ''; /* Limpia el grid antes de renderizar */
+      resultsCount.textContent = filtered.length; /* Actualiza el contador de resultados */
       filtered.forEach(p=>{
-        const card = document.createElement('article');
-        card.className='card-prod';
+        const card = document.createElement('article'); /* Crea la tarjeta del producto */
+        card.className='card-prod'; /* Aplica estilos de tarjeta */
         card.innerHTML = `
-          <div class="thumb"><img loading="lazy" src="${p.images[0]}" alt="${p.title}"/></div>
-          <div class="title">${p.title}</div>
-          <div class="meta">${p.anime} • ${p.type}</div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
-            <div class="price">$${p.price}</div>
-            <div class="stock">Stock: ${p.stock}</div>
+          <div class="thumb"><img loading="lazy" src="${p.images[0]}" alt="${p.title}"/></div> <!-- Miniatura del producto -->
+          <div class="title">${p.title}</div> <!-- Título visible -->
+          <div class="meta">${p.anime} • ${p.type}</div> <!-- Anime y tipo -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"> <!-- Fila precio/stock -->
+            <div class="price">$${p.price}</div> <!-- Precio -->
+            <div class="stock">Stock: ${p.stock}</div> <!-- Stock disponible -->
           </div>
         `;
-        card.onclick = ()=> openModal(p);
-        productsGrid.appendChild(card);
+        card.onclick = ()=> openModal(p); /* Abre el modal con detalles al hacer clic */
+        productsGrid.appendChild(card); /* Añade la tarjeta al grid */
       });
     }
 
-    renderCategories(); renderProducts();
+    renderCategories(); renderProducts(); /* Render inicial de categorías y catálogo */
 
-    document.getElementById('btnSearch').onclick = ()=> renderProducts();
-    document.getElementById('ver-todos').onclick = (e)=>{ e.preventDefault(); activeCat='Todos'; renderCategories(); renderProducts(); };
+    document.getElementById('btnSearch').onclick = ()=> renderProducts(); /* Botón 'Buscar' dispara el filtrado */
+    document.getElementById('ver-todos').onclick = (e)=>{ /* Enlace 'Todos' resetea categoría */
+      e.preventDefault(); activeCat='Todos'; renderCategories(); renderProducts();
+    };
 
-    // ----------------- Modal + Carrusel simple (touch + botones) -----------------
-    const modal = document.getElementById('productModal');
-    const modalClose = document.getElementById('modalClose');
-    const carouselStage = document.getElementById('carouselStage');
-    const carouselThumbs = document.getElementById('carouselThumbs');
+    /* Referencias del modal y carrusel */
+    const modal = document.getElementById('productModal'); /* Contenedor del modal */
+    const modalClose = document.getElementById('modalClose'); /* Botón de cierre del modal */
+    const carouselStage = document.getElementById('carouselStage'); /* Escenario de imágenes grandes */
+    const carouselThumbs = document.getElementById('carouselThumbs'); /* Tiras de miniaturas */
 
-    let currentImages = [];
-    let currentIndex = 0;
+    let currentImages = []; /* Lista de imágenes del producto actual */
+    let currentIndex = 0; /* Índice de la imagen mostrada actualmente */
 
-    function openModal(product){
-      document.getElementById('modalTitle').textContent = product.title;
-      document.getElementById('modalPrice').textContent = '$'+product.price;
-      document.getElementById('modalDesc').textContent = product.description;
-      document.getElementById('modalStock').textContent = product.stock;
-      document.getElementById('igLink').href = CONFIG.instagram;
-      document.getElementById('fbLink').href = CONFIG.facebook;
+    function openModal(product){ /* Abre el modal y carga la información del producto */
+      document.getElementById('modalTitle').textContent = product.title; /* Título */
+      document.getElementById('modalPrice').textContent = '$'+product.price; /* Precio formateado */
+      document.getElementById('modalDesc').textContent = product.description; /* Descripción */
+      document.getElementById('modalStock').textContent = product.stock; /* Stock */
+      document.getElementById('igLink').href = CONFIG.instagram; /* Enlace Instagram en modal */
+      document.getElementById('fbLink').href = CONFIG.facebook; /* Enlace Facebook en modal */
 
-      currentImages = product.images.slice(0,8); // límite 8
-      carouselStage.innerHTML = '';
-      carouselThumbs.innerHTML = '';
+      currentImages = product.images.slice(0,8); /* Limita a 8 imágenes para el carrusel */
+      carouselStage.innerHTML = ''; /* Limpia el escenario */
+      carouselThumbs.innerHTML = ''; /* Limpia miniaturas */
 
-      currentImages.forEach((src,i)=>{
-        const img = document.createElement('img');
-        img.src = src; img.alt = product.title+ ' - ' + (i+1);
-        img.style.transform = `translateX(${i*100}%)`;
-        carouselStage.appendChild(img);
+      currentImages.forEach((src,i)=>{ /* Crea imágenes grandes y sus miniaturas */
+        const img = document.createElement('img'); /* Imagen grande */
+        img.src = src; img.alt = product.title+ ' - ' + (i+1); /* Alt accesible */
+        img.style.transform = `translateX(${i*100}%)`; /* Posiciona cada imagen en su slide */
+        carouselStage.appendChild(img); /* Inserta en el escenario */
 
-        const t = document.createElement('img'); t.src = src; t.alt='thumb';
-        t.onclick = ()=> showIndex(i);
-        carouselThumbs.appendChild(t);
+        const t = document.createElement('img'); t.src = src; t.alt='thumb'; /* Miniatura */
+        t.onclick = ()=> showIndex(i); /* Al hacer clic: muestra esa imagen */
+        carouselThumbs.appendChild(t); /* Inserta en la tira de miniaturas */
       });
-      currentIndex = 0; showIndex(0);
-      modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+
+      currentIndex = 0; showIndex(0); /* Muestra la primera imagen por defecto */
+      modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); /* Abre el modal */
     }
 
-    function showIndex(i){
-      const imgs = carouselStage.querySelectorAll('img');
-      currentIndex = (i+imgs.length)%imgs.length;
-      imgs.forEach((img,idx)=> img.style.transform = `translateX(${(idx-currentIndex)*100}%)`);
+    function showIndex(i){ /* Cambia la imagen mostrada en el carrusel */
+      const imgs = carouselStage.querySelectorAll('img'); /* Todas las imágenes del escenario */
+      currentIndex = (i+imgs.length)%imgs.length; /* Ajusta índice con wrap-around */
+      imgs.forEach((img,idx)=> { /* Desliza todas las imágenes para centrar la seleccionada */
+        img.style.transform = `translateX(${(idx-currentIndex)*100}%)`;
+      });
     }
 
-    modalClose.onclick = ()=>{ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
-    modal.onclick = (e)=>{ if(e.target===modal) modal.classList.remove('open'); }
+    modalClose.onclick = ()=>{ /* Cierra el modal al pulsar ✕ */
+      modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
+    };
 
-    // touch swipe
-    let startX=null; carouselStage.addEventListener('touchstart',e=>{ startX = e.touches[0].clientX; });
-    carouselStage.addEventListener('touchend',e=>{
-      if(startX===null) return; const endX = e.changedTouches[0].clientX; const dx = endX-startX;
-      if(Math.abs(dx)>40){ if(dx<0) showIndex(currentIndex+1); else showIndex(currentIndex-1); }
-      startX=null;
+    modal.onclick = (e)=>{ /* Cierra el modal al hacer clic fuera de la hoja */
+      if(e.target===modal) modal.classList.remove('open');
+    };
+
+    let startX=null; /* Coordenada inicial del toque para swipe */
+    carouselStage.addEventListener('touchstart',e=>{ /* Inicia gesto táctil en carrusel */
+      startX = e.touches[0].clientX;
     });
-
+    carouselStage.addEventListener('touchend',e=>{ /* Finaliza gesto táctil y calcula desplazamiento */
+      if(startX===null) return;
+      const endX = e.changedTouches[0].clientX; const dx = endX-startX; /* Distancia horizontal */
+      if(Math.abs(dx)>40){ /* Umbral mínimo para considerar swipe */
+        if(dx<0) showIndex(currentIndex+1); else showIndex(currentIndex-1); /* Navega izquierda/derecha */
+      }
+      startX=null; /* Resetea el estado del gesto */
+    });
+    
+// FIN JS    
   </script>
+  
 </body>
+  
 </html>
