@@ -21,9 +21,11 @@
     a{color:inherit} /* Los enlaces heredan el color del texto */
 
     header {
-  background: linear-gradient(135deg, #2E7D6E, #F4A6C0); /* Verde → Rosa en diagonal */
-  color: white;
+  background: linear-gradient(135deg, #2E7D6E, #F4A6C0),
+              url('images/pattern.png'); /* Patrón temático */
+  background-blend-mode: overlay;
 }
+
  /* Barra superior con degradado y layout flex */
     .brand{font-weight:700;font-size:1.1rem} /* Marca con énfasis tipográfico */
     .search{margin-left:auto;display:flex;gap:8px} /* Empuja el buscador a la derecha y separa sus elementos */
