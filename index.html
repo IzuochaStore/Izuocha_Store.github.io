@@ -73,6 +73,52 @@
       .thumb{height:160px} /* Imagen principal más baja en móvil */
       .modal .sheet{flex-direction:column} /* Modal apilado en columnas en móvil */
     }
+
+    .product-card {
+  background: #fff; /* Rectángulo blanco */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 220px; /* Ajusta según tu grid */
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover; /* Imagen recortada sin deformarse */
+}
+
+.product-info {
+  padding: 10px;
+  text-align: center;
+}
+
+.product-info .brand {
+  font-size: 0.8rem;
+  color: #666; /* Gris tenue */
+}
+
+.product-info .name {
+  font-weight: 600;
+  margin: 6px 0;
+}
+
+.product-info .price {
+  color: #C62828; /* Rojo intenso (Deku/urgencia) */
+  font-weight: 700;
+  margin: 6px 0;
+}
+
+.product-info .stock {
+  background: #F4A6C0; /* Rosado suave (Uraraka) */
+  color: #fff;
+  font-weight: 600;
+  padding: 6px;
+  border-radius: 6px;
+}
+
     /* FIN CSS */
   </style> 
 
@@ -117,6 +163,18 @@
         </div>
 
         <div class="products" id="productsGrid"> <!-- Grid donde se renderizan las tarjetas -->
+          <div class="product-card">
+  <div class="product-image">
+    <img src="images/mha_sticker1.jpg" alt="Sticker Deku Chibi">
+  </div>
+  <div class="product-info">
+    <div class="brand">SEGA</div>
+    <div class="name">Sticker Deku Chibi</div>
+    <div class="price">$1.500 CLP</div>
+    <div class="stock">10 en Stock</div>
+  </div>
+</div>
+
           <!-- tarjetas generadas por JS -->
         </div>
       </section>
