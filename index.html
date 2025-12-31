@@ -177,17 +177,19 @@
       font-size:1.02rem;
     }
 
-    .banner {
+  .banner {
   height: 200px; /* alto del banner rectangular */
   background: #fff; /* o la imagen del banner */
 }
 
 .scroll-image {
-  height: 200vh; /* o más, según cuánto quieras recorrer */
-  background: url("images/FondoIzuochaStoreV2.jpg") no-repeat center top;
-  background-size: cover;
-  background-attachment: fixed;
+  height: 200vh; /* el contenedor mide el doble de la pantalla para recorrer la imagen */
+  background: url("images/FondoIzuochaStoreV2.jpg") no-repeat top center;
+  background-size: cover; /* mantiene proporción 16:9 */
+  background-attachment: fixed; /* efecto parallax */
 }
+
+
 
 
 
@@ -410,6 +412,8 @@
 
     <div class="products" id="productsGrid"></div>
   </div>
+
+
 
 
   <!-- Espacio final para ver el fondo completo sin superposiciones -->
