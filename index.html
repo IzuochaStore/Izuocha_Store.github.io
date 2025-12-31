@@ -29,11 +29,10 @@
     body {
   font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   color: var(--text);
-  background: url("images/FondoIzuochaStoreV2.jpg") no-repeat center center fixed;
-  background-size: contain;   /* ahora se ve completa */
-  background-color: #000;     /* relleno negro si sobran espacios */
+  background-color: #fff; /* o el color que quieras de fondo */
   line-height: 1.45;
 }
+
 
 
     /* =========================================================
@@ -377,12 +376,12 @@
 
 /* Fondo con recorrido vertical en 16:9 empezando desde arriba */
 .scroll-image {
-  margin-top: 200px; /* igual a la altura del banner */
-  height: 100vh;
+  height: 100vh; /* o 120vh si quieres más recorrido */
   background: url("images/FondoIzuochaStoreV2.jpg") no-repeat top center;
-  background-size: cover;
-  background-attachment: fixed;
+  background-size: cover;       /* llena ancho, mantiene proporción */
+  background-attachment: fixed; /* efecto de recorrido */
 }
+
 
 
 /* Neutraliza el separador final si empuja o tapa la obra */
