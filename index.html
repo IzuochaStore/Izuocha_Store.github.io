@@ -26,13 +26,15 @@
     /* =========================================================
        Fondo general (cuadrado estático)
     ==========================================================*/
-    body{
-      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: url("images/FondoIzuochaStore.jpg") no-repeat center center fixed;
-      background-size: cover;
-      line-height: 1.45;
-    }
+    body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: url("images/FondoIzuochaStore.jpg") no-repeat center center fixed;
+  background-size: contain;   /* ahora se ve completa */
+  background-color: #000;     /* relleno negro si sobran espacios */
+  line-height: 1.45;
+}
+
 
     /* =========================================================
        Banner superior (placeholder para cuando lo agregues)
@@ -174,6 +176,19 @@
       font-weight:800;
       font-size:1.02rem;
     }
+
+    .banner {
+  height: 200px; /* alto del banner rectangular */
+  background: #fff; /* o la imagen del banner */
+}
+
+.scroll-image {
+  height: 200vh; /* el contenedor mide el doble de la pantalla */
+  background: url("images/FondoIzuochaStore16-9.jpg") no-repeat center top;
+  background-size: cover; /* mantiene 16:9 */
+  background-attachment: fixed; /* efecto parallax */
+}
+
 
     /* Bloque inferior estilo “botón” pero para stock (rosado) */
     .stock{
@@ -366,18 +381,21 @@
     }
 
     /* Espacio al final para apreciar el fondo completo */
-    .bottom-space{
-      height: 520px;
-    }
+    .bottom-space {
+  min-height: 40vh; /* 40% de la altura de la ventana */
+}
+
   </style>
 </head>
 
 <body>
-  <!-- Banner superior (cuando lo agregues, reemplaza el placeholder) -->
+  <!-- Banner superior -->
   <div class="banner">
-    <div class="placeholder">Banner superior (lo agregarás luego con tus 3 imágenes horizontales)</div>
+    <!-- aquí va tu banner rectangular -->
   </div>
-  <div class="separator"></div>
+
+  <!-- Imagen scroll en 16:9 -->
+  <div class="scroll-image"></div>
 
   <!-- Contenido principal -->
   <div class="container">
@@ -389,9 +407,9 @@
       </div>
     </div>
 
-    <!-- Grid de productos (se renderiza con JS) -->
     <div class="products" id="productsGrid"></div>
   </div>
+
 
   <!-- Espacio final para ver el fondo completo sin superposiciones -->
   <div class="bottom-space"></div>
@@ -432,78 +450,75 @@
        Datos de productos (5 vasos, 3 imágenes cada uno .jpg)
        Regla: 1.3 = portada + 1ra del carrusel, 2.3 = 2da, 3.3 = 3ra
     ==========================================================*/
+
     const products = [
-      {
-        id: "vaso-todoroki",
-        title: "Vaso Todoroki My Hero Academia",
-        brand: "Bandai 2021",
-        price: "$5.000 CLP",
-        stock: 1,
-        images: [
-          "images/VasoTodoroki1.3.jpg",
-          "images/VasoTodoroki2.3.jpg",
-          "images/VasoTodoroki3.3.jpg"
-        ],
-        description:
-"Vaso Ichiban Kuji: My Hero Academia THE MOVIE - World Heroes' Mission (Categoría E) Bandai 2021.\nEntrega Portal Temuco, horario conversable.\n- Personaje: Shoto Todoroki.\n- Capacidad 350ml.\n- Altura: 12cm.\n- Diámetro superior: 8cm.\n- Plástico (polipropileno).\n- Traído de Japón en perfecto estado.\n- No apto para microondas, el grabado puede dañarse con agua caliente o detergentes fuertes."
-      },
-      {
-        id: "vaso-hawks",
-        title: "Vaso Hawks My Hero Academia",
-        brand: "Bandai 2021",
-        price: "$5.000 CLP",
-        stock: 2,
-        images: [
-          "images/VasoHawks1.3.jpg",
-          "images/VasoHawks2.3.jpg",
-          "images/VasoHawks3.3.jpg"
-        ],
-        description:
-"Vaso de colección con ilustración de Hawks.\n- Capacidad 350ml.\n- Material resistente.\n- Edición Bandai 2021.\n- Pieza temática MHA perfecta para fans y colección."
-      },
-      {
-        id: "vaso-bdt",
-        title: "Vaso BDT My Hero Academia",
-        brand: "Bandai 2021",
-        price: "$5.000 CLP",
-        stock: 0,
-        images: [
-          "images/VasoBDT1.3.jpg",
-          "images/VasoBDT2.3.jpg",
-          "images/VasoBDT3.3.jpg"
-        ],
-        description:
-"Vaso temático BDT.\n- Capacidad 350ml.\n- Material: polipropileno.\n- Edición Bandai 2021.\n- Ideal para exhibir o uso cotidiano."
-      },
-      {
-        id: "vaso-rody",
-        title: "Vaso Rody My Hero Academia",
-        brand: "Bandai 2021",
-        price: "$5.000 CLP",
-        stock: 3,
-        images: [
-          "images/VasoRody1.3.jpg",
-          "images/VasoRody2.3.jpg",
-          "images/VasoRody3.3.jpg"
-        ],
-        description:
-"Vaso con diseño de Rody.\n- Capacidad 350ml.\n- Material: polipropileno.\n- Edición Bandai 2021.\n- Pieza de colección inspirada en MHA THE MOVIE."
-      },
-      {
-        id: "vaso-bakugo",
-        title: "Vaso Bakugo My Hero Academia",
-        brand: "Bandai 2021",
-        price: "$5.000 CLP",
-        stock: 1,
-        images: [
-          "images/VasoBakugo1.3.jpg",
-          "images/VasoBakugo2.3.jpg",
-          "images/VasoBakugo3.3.jpg"
-        ],
-        description:
-"Vaso con arte de Bakugo.\n- Capacidad 350ml.\n- Material: polipropileno.\n- Edición Bandai 2021.\n- Ideal para coleccionistas."
-      }
-    ];
+  {
+    id: "vaso-todoroki",
+    title: "Vaso Todoroki My Hero Academia",
+    brand: "Bandai 2021",
+    price: "$5.000 CLP",
+    stock: 1,
+    images: [
+      "images/VasoTodoroki1.3.jpg",
+      "images/VasoTodoroki2.3.jpg",
+      "images/VasoTodoroki3.3.jpg"
+    ],
+    description: "Vaso Ichiban Kuji: My Hero Academia THE MOVIE - World Heroes' Mission (Categoría E) Bandai 2021. Entrega Portal Temuco, horario conversable. Personaje: Shoto Todoroki. Capacidad 350ml. Altura: 12cm. Diámetro superior: 8cm. Plástico (polipropileno). Traído de Japón en perfecto estado. No apto para microondas, el grabado puede dañarse con agua caliente o detergentes fuertes."
+  },
+  {
+    id: "vaso-hawks",
+    title: "Vaso Hawks My Hero Academia",
+    brand: "Bandai 2021",
+    price: "$5.000 CLP",
+    stock: 0,
+    images: [
+      "images/VasoHawks1.3.jpg",
+      "images/VasoHawks2.3.jpg",
+      "images/VasoHawks3.3.jpg"
+    ],
+    description: "Vaso Ichiban Kuji: My Hero Academia THE MOVIE - World Heroes' Mission (Categoría E) Bandai 2021. Entrega Portal Temuco, horario conversable. Personaje: Hawks. Capacidad 350ml. Altura: 12cm. Diámetro superior: 8cm. Plástico (polipropileno). Traído de Japón en perfecto estado. No apto para microondas, el grabado puede dañarse con agua caliente o detergentes fuertes."
+  },
+  {
+    id: "vaso-bdt",
+    title: "Vaso BDT My Hero Academia",
+    brand: "Bandai 2021",
+    price: "$5.000 CLP",
+    stock: 1,
+    images: [
+      "images/VasoBDT1.3.jpg",
+      "images/VasoBDT2.3.jpg",
+      "images/VasoBDT3.3.jpg"
+    ],
+    description: "Vaso Ichiban Kuji: My Hero Academia THE MOVIE - World Heroes' Mission (Categoría E) Bandai 2021. Entrega Portal Temuco, horario conversable. Personajes: Bakugo, Deku y Todoroki. Capacidad 350ml. Altura: 12cm. Diámetro superior: 8cm. Plástico (polipropileno). Traído de Japón en perfecto estado. No apto para microondas, el grabado puede dañarse con agua caliente o detergentes fuertes."
+  },
+  {
+    id: "vaso-rody",
+    title: "Vaso Rody My Hero Academia",
+    brand: "Bandai 2021",
+    price: "$5.000 CLP",
+    stock: 1,
+    images: [
+      "images/VasoRody1.3.jpg",
+      "images/VasoRody2.3.jpg",
+      "images/VasoRody3.3.jpg"
+    ],
+    description: "Vaso Ichiban Kuji: My Hero Academia THE MOVIE - World Heroes' Mission (Categoría E) Bandai 2021. Entrega Portal Temuco, horario conversable. Personaje: Rody. Capacidad 350ml. Altura: 12cm. Diámetro superior: 8cm. Plástico (polipropileno). Traído de Japón en perfecto estado. No apto para microondas, el grabado puede dañarse con agua caliente o detergentes fuertes."
+  },
+  {
+    id: "vaso-bakugo",
+    title: "Vaso Bakugo My Hero Academia",
+    brand: "Bandai 2021",
+    price: "$5.000 CLP",
+    stock: 1,
+    images: [
+      "images/VasoBakugo1.3.jpg",
+      "images/VasoBakugo2.3.jpg",
+      "images/VasoBakugo3.3.jpg"
+    ],
+    description: "Vaso Ichiban Kuji: My Hero Academia THE MOVIE - World Heroes' Mission (Categoría E) Bandai 2021. Entrega Portal Temuco, horario conversable. Personaje: Katsuki Bakugo. Capacidad 350ml. Altura: 12cm. Diámetro superior: 8cm. Plástico (polipropileno). Traído de Japón en perfecto estado. No apto para microondas, el grabado puede dañarse con agua caliente o detergentes fuertes."
+  }
+];
+
 
     /* =========================================================
        Render del grid de productos
