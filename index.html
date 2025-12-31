@@ -177,19 +177,6 @@
       font-size:1.02rem;
     }
 
-    .banner {
-  height: 200px; /* alto del banner rectangular */
-  background: #fff; /* o la imagen del banner */
-}
-
-.scroll-image {
-  height: 200vh; /* el contenedor mide el doble de la pantalla */
-  background: url("images/FondoIzuochaStore16-9.jpg") no-repeat center top;
-  background-size: cover; /* mantiene 16:9 */
-  background-attachment: fixed; /* efecto parallax */
-}
-
-
     /* Bloque inferior estilo “botón” pero para stock (rosado) */
     .stock{
       background: var(--accent-pink);
@@ -380,11 +367,36 @@
       .carousel{ min-height: 280px; }
     }
 
-    /* Espacio al final para apreciar el fondo completo */
-    .bottom-space {
-  min-height: 40vh; /* 40% de la altura de la ventana */
+    /* Banner superior: altura estable */
+.banner {
+  min-height: 200px; /* ajusta si tu banner real es más alto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Fondo con recorrido vertical en 16:9 empezando desde arriba */
+.scroll-image {
+  height: 120vh; /* 100–200vh según cuánto quieras recorrer */
+  background: url("images/FondoIzuochaStoreV2.jpg") no-repeat top center;
+  background-size: cover;       /* llena ancho, mantiene 16:9, sin franjas */
+  background-attachment: fixed; /* fijo para efecto de recorrido */
+}
+
+/* Neutraliza el separador final si empuja o tapa la obra */
+.bottom-space {
+  height: 0;       /* evita empuje excesivo */
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Evita que el grid quede flotando a mitad del scroll */
+.products, #productsGrid {
+  margin-top: 0;
+}
+
+    
   </style>
 </head>
 
@@ -410,9 +422,12 @@
     <div class="products" id="productsGrid"></div>
   </div>
 
-
   <!-- Espacio final para ver el fondo completo sin superposiciones -->
   <div class="bottom-space"></div>
+
+  <!-- Modal de detalle -->
+  <!-- (tu bloque de modal tal como lo enviaste) -->
+
 
   <!-- Modal de detalle -->
   <div class="modal" id="productModal" aria-hidden="true">
