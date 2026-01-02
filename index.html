@@ -108,24 +108,29 @@ body {
 
 
 
-
-/* Íconos sociales debajo */
+/* Contenedor de redes sociales */
 .social-icons {
   display: flex;
-  justify-content: space-between; /* 👈 separa extremos */
+  justify-content: space-between; /* 👈 coloca F a la izquierda, i al centro, T a la derecha */
   align-items: center;
-  width: 60%;          /* 👈 controla el ancho del bloque */
-  margin-top: 40px;    /* 👈 más abajo respecto a la barra */
+  width: 100%;        /* ocupa todo el ancho del banner */
+  max-width: 600px;   /* 👈 igual que la barra de búsqueda para que coincidan los extremos */
+  margin: 20px auto;  /* 👈 espacio entre la barra y el final del banner */
+  position: relative;
 }
+
+/* Íconos */
 .social-icons img {
   width: 48px;
   height: 48px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
+
 .social-icons img:hover {
   transform: scale(1.1);
 }
+
 
 
 
@@ -398,16 +403,17 @@ body {
 
   <!-- Íconos de redes sociales -->
   <div class="social-icons">
-    <a href="https://facebook.com" target="_blank">
-      <img src="images/iconFacebook.png" alt="Facebook" />
-    </a>
-    <a href="https://instagram.com" target="_blank">
-      <img src="images/iconInstagram.png" alt="Instagram" />
-    </a>
-    <a href="https://tiktok.com" target="_blank">
-      <img src="images/iconTiktok.png" alt="TikTok" />
-    </a>
-  </div>
+  <a href="https://facebook.com" target="_blank">
+    <img src="images/iconFacebook.png" alt="Facebook" />
+  </a>
+  <a href="https://instagram.com" target="_blank">
+    <img src="images/iconInstagram.png" alt="Instagram" />
+  </a>
+  <a href="https://tiktok.com" target="_blank">
+    <img src="images/iconTiktok.png" alt="TikTok" />
+  </a>
+</div>
+
 </div>
 
 
