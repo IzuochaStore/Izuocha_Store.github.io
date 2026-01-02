@@ -363,17 +363,57 @@
     @media (max-width: 600px){
       .products{ grid-template-columns: 1fr; }
       .product-image{ height: 220px; }
-      .search input{ width: 140px; }
+      .search-bar input { width: 140px; }
       .carousel{ min-height: 280px; }
     }
 
     /* Banner superior: altura estable */
 .banner {
-  min-height: 200px; /* ajusta si tu banner real es más alto */
+  background: #fff;
+  height: 200px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 12px;
 }
+
+.search-bar {
+  display: flex;
+  gap: 8px;
+}
+
+.search-bar input,
+.search-bar select,
+.search-bar button {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  background: #0078d7;
+  color: #fff;
+  cursor: pointer;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.social {
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.fb { background: #3b5998; }
+.ig { background: #e1306c; }
+.tk { background: #000; }
+
+
 
 /* Fondo con recorrido vertical en 16:9 empezando desde arriba */
 .scroll-image {
@@ -406,8 +446,21 @@
 <body>
   <!-- Banner superior -->
   <div class="banner">
-    <!-- aquí va tu banner rectangular -->
+  <div class="search-bar">
+    <input id="searchInput" type="text" placeholder="Buscar producto..." />
+    <select id="categorySelect">
+      <option value="all">All</option>
+    </select>
+    <button id="searchBtn" type="button">Buscar</button>
   </div>
+
+  <div class="social-buttons">
+    <a href="https://facebook.com" target="_blank" class="social fb">Facebook</a>
+    <a href="https://instagram.com" target="_blank" class="social ig">Instagram</a>
+    <a href="https://tiktok.com" target="_blank" class="social tk">TikTok</a>
+  </div>
+</div>
+
 
   <!-- Imagen scroll en 16:9 -->
   <div class="scroll-image"></div>
@@ -569,17 +622,49 @@
     /* =========================================================
        Búsqueda simple (por nombre)
     ==========================================================*/
-    const searchInput = document.getElementById("searchInput");
-    const searchBtn = document.getElementById("searchBtn");
-    function doSearch(){
-      const q = (searchInput.value || "").toLowerCase();
-      if(!q){ renderProducts(products); return; }
-      const filtered = products.filter(p => p.title.toLowerCase().includes(q));
-      renderProducts(filtered);
-    }
-    searchBtn.addEventListener("click", doSearch);
-    searchInput.addEventListener("keydown", (e)=>{
-      if(e.key === "Enter"){ doSearch(); }
+  // Generar categorías dinámicas
+function updateCategories() {
+  const categorySelect = document.getElementById("categorySelect");
+  const categories = new Set(products.map(p => p.anime)); // cada producto debe tener propiedad "anime"
+  
+  categorySelect.innerHTML = '<option value="all">All</option>';
+  
+  categories.forEach(cat => {
+    const opt = document.createElement("option");
+    opt.value = cat;
+    opt.textContent = cat;
+    categorySelect.appendChild(opt);
+  });
+}
+
+// Nueva búsqueda con categoría
+function doSearch(){
+  const q = (searchInput.value || "").toLowerCase();
+  const selectedCat = document.getElementById("categorySelect").value;
+  
+  let filtered = products;
+  
+  if (selectedCat !== "all") {
+    filtered = filtered.filter(p => p.anime === selectedCat);
+  }
+  
+  if (q) {
+    filtered = filtered.filter(p => p.title.toLowerCase().includes(q));
+  }
+  
+  renderProducts(filtered);
+}
+
+// Eventos
+searchBtn.addEventListener("click", doSearch);
+searchInput.addEventListener("keydown", (e)=>{
+  if(e.key === "Enter"){ doSearch(); }
+});
+document.getElementById("categorySelect").addEventListener("change", doSearch);
+
+// Inicializar categorías
+updateCategories();
+=== "Enter"){ doSearch(); }
     });
 
     /* =========================================================
