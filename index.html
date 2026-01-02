@@ -77,17 +77,20 @@ body {
 }
 
 .search-bar input {
-  flex: 1;
+  flex: 0 0 300px;   /* 👈 ancho fijo más corto */
+  max-width: 300px;  /* 👈 límite máximo */
   border: none;
   padding: 8px;
   font-size: 0.95rem;
   outline: none;
 }
 
+
 .search-bar button {
-  flex: 0 0 40px;
+  flex: 0 0 50px;        /* 👈 un poco más ancho */
+  height: 50px;          /* 👈 más alto */
   border: none;
-  background: #28a745; /* 👈 verde */
+  background: #28a745;   /* 👈 verde */
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -96,10 +99,11 @@ body {
 }
 
 .search-bar button img {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   filter: brightness(0) invert(1); /* 👈 asegura que la lupa se vea blanca */
 }
+
 
 
 /* Íconos sociales debajo */
