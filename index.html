@@ -61,10 +61,11 @@ body {
   background: rgba(255,255,255,0.9);
   border-radius: 30px;
   padding: 6px 12px;
-  width: 80%;
-  max-width: 900px;
+  width: 65%;   /* 👈 más corta */
+  max-width: 700px; /* 👈 límite */
   box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
+
 
 .search-bar select {
   flex: 0 0 140px;
@@ -86,28 +87,36 @@ body {
 .search-bar button {
   flex: 0 0 40px;
   border: none;
-  background: transparent;
+  background: #28a745; /* 👈 verde */
+  border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-bar button img {
   width: 20px;
   height: 20px;
+  filter: brightness(0) invert(1); /* 👈 asegura que la lupa se vea blanca */
 }
+
 
 /* Íconos sociales debajo */
 .social-icons {
   display: flex;
-  gap: 32px;
+  gap: 48px;        /* 👈 más separados */
   justify-content: center;
+  margin-top: 32px; /* 👈 más abajo */
 }
 
 .social-icons img {
-  width: 32px;
-  height: 32px;
+  width: 48px;      /* 👈 más grandes */
+  height: 48px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
+
 
 .social-icons img:hover {
   transform: scale(1.1);
@@ -413,7 +422,7 @@ body {
     </select>
     <input id="searchInput" type="text" placeholder="Buscar producto..." />
     <button id="searchBtn" type="button">
-      <img src="images/iconSearch.png" alt="Buscar" />
+      <img src="images/iconLupa.png" alt="Buscar" />
     </button>
   </div>
 
