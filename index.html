@@ -22,14 +22,17 @@
     }
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{height:100%}
-   body {
+    
+body {
   font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   color: var(--text);
   background: url("images/FondoIzuochaStoreV2.jpg") no-repeat top center;
-  background-size: cover;     /* llena el ancho */
+  background-size: 100% auto;   /* ocupa todo el ancho, altura proporcional */
   background-attachment: scroll; /* 👈 se mueve con el scroll */
   line-height: 1.45;
 }
+
+
 
 
 
@@ -341,8 +344,6 @@
     </div>
   </div>
 
-  <!-- Imagen scroll en 16:9 -->
-  <div class="scroll-image"></div>
 
   <!-- Contenido principal -->
   <div class="container">
