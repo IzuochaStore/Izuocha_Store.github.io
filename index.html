@@ -56,18 +56,7 @@ body {
 
 
 /* Rectángulo de búsqueda */
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: rgba(255,255,255,0.9);
-  border-radius: 30px;
-  padding: 0;
-  width: 50%;          /* 👈 más corto */
-  max-width: 600px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-  margin: 0 auto;
-  overflow: hidden;     /* 👈 asegura que los bordes se integren */
-}
+.search-bar { display: flex; align-items: center; background: rgba(255,255,255,0.9); border-radius: 30px; padding: 6px 12px; width: 50%; max-width: 600px; box-shadow: 0 2px 6px rgba(0,0,0,0.25); margin: -8px auto 0 auto; /* 👈 sube ligeramente la barra */ }
 
 .search-bar select {
   flex: 0 0 120px;
@@ -109,27 +98,26 @@ body {
 
 
 /* Contenedor de redes sociales */
+/* Redes sociales */
 .social-icons {
   display: flex;
-  justify-content: space-between; /* 👈 coloca F a la izquierda, i al centro, T a la derecha */
+  justify-content: space-between; /* F izquierda, i centro, T derecha */
   align-items: center;
-  width: 100%;        /* ocupa todo el ancho del banner */
-  max-width: 600px;   /* 👈 igual que la barra de búsqueda para que coincidan los extremos */
-  margin: 20px auto;  /* 👈 espacio entre la barra y el final del banner */
-  position: relative;
+  width: 100%;
+  max-width: 600px; /* 👈 igual que la barra para coincidir extremos */
+  margin: 32px auto 0 auto; /* 👈 baja más las redes (ajusta este valor según tu referencia visual) */
 }
 
-/* Íconos */
 .social-icons img {
   width: 48px;
   height: 48px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-
 .social-icons img:hover {
   transform: scale(1.1);
 }
+
 
 
 
