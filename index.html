@@ -61,26 +61,48 @@ body {
   width: 100%;
 }
 
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.85);
+  padding: 8px 12px;
+  border-radius: 6px;
+  width: 80%; /* 👈 ancho largo */
+  max-width: 900px;
+}
 
-    .search-bar {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .search-bar input,
-    .search-bar select,
-    .search-bar button {
-      padding: 6px 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      height: 36px;
-    }
-    .search-bar button {
-      background: #0078d7;
-      color: #fff;
-      cursor: pointer;
-    }
-    .social-buttons { display: flex; gap: 16px; }
+.search-bar select {
+  flex: 0 0 140px; /* ancho fijo para "Animes" */
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar input {
+  flex: 1; /* ocupa todo el espacio central */
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  flex: 0 0 50px; /* ancho fijo para el botón de lupa */
+  background: #0078d7;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 32px; /* 👈 más separados */
+  margin-top: 16px;
+  justify-content: center; /* 👈 centrados */
+}
+
+    
     .social {
       text-decoration: none;
       padding: 6px 12px;
@@ -338,23 +360,26 @@ body {
 </head>
 
 <body>
-  <!-- Banner superior -->
-  <!-- Banner superior (4:1) -->
+ 
+<!-- Banner superior -->
 <div class="banner">
+  <!-- Barra de búsqueda + selector + botón -->
   <div class="search-bar">
-    <input id="searchInput" type="text" placeholder="Buscar producto..." />
     <select id="categorySelect">
       <option value="all">Animes</option>
     </select>
-    <button id="searchBtn" type="button">Buscar</button>
+    <input id="searchInput" type="text" placeholder="Buscar producto..." />
+    <button id="searchBtn" type="button">&#128269;</button> <!-- lupa -->
   </div>
 
+  <!-- Botones sociales debajo -->
   <div class="social-buttons">
     <a href="https://facebook.com" target="_blank" class="social fb">Facebook</a>
     <a href="https://instagram.com" target="_blank" class="social ig">Instagram</a>
     <a href="https://tiktok.com" target="_blank" class="social tk">TikTok</a>
   </div>
 </div>
+
 
 <!-- Fondo mural 16:12 con productos encima -->
 <div class="background">
