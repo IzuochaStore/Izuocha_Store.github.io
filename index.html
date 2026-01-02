@@ -31,11 +31,6 @@ body {
   background-attachment: scroll; /* 👈 se mueve con el scroll */
   line-height: 1.45;
 }
-
-
-
-
-
     /* =========================================================
        Banner superior con imagen + buscador + redes
     ==========================================================*/
@@ -44,67 +39,93 @@ body {
 
 .banner {
   width: 100%;
-  aspect-ratio: 4 / 1; /* mantiene proporción del banner */
+  /* Cambiamos de 4/1 a 6/1 para que sea más rectangular y bajo */
+  aspect-ratio: 6 / 1; 
+  /* 'contain' asegura que los 4 personajes se vean completos sin cortarse */
   background: url("images/bannerIzuochaStore.jpg") no-repeat center center;
-  background-size: cover;
+  background-size: contain; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
+  /* Añadimos un color de fondo por si la imagen es más corta que el ancho total */
+  background-color: #ffffff; 
 }
 
-/* Barra de búsqueda tipo Google */
+
 .search-bar {
   display: flex;
   align-items: center;
   background: rgba(255,255,255,0.9);
-  border-radius: 30px;
-  padding: 6px 12px;
-  width: 80%;
-  max-width: 900px;
+  border-radius: 18px;   /* 👈 menos redondo */
+  width: 50%;
+  max-width: 600px;
+  height: 48px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  margin: -8px auto 0 auto;
+  overflow: hidden;      /* 👈 asegura que el botón se integre al borde */
 }
 
-.search-bar select {
-  flex: 0 0 140px;
-  border: none;
-  background: transparent;
-  font-weight: 600;
-  font-size: 0.95rem;
-  outline: none;
-}
-
-.search-bar input {
-  flex: 1;
-  border: none;
-  padding: 8px;
-  font-size: 0.95rem;
-  outline: none;
-}
-
+/* Botón verde al final */
 .search-bar button {
-  flex: 0 0 40px;
+  flex: 0 0 70px;
+  height: 100%;
   border: none;
-  background: transparent;
+  background: #28a745;   /* verde Deku */
+  border-radius: 0 18px 18px 0; /* 👈 bordes derechos menos redondos */
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-bar button img {
   width: 20px;
   height: 20px;
+  filter: brightness(0) invert(1); /* lupa blanca */
 }
 
-/* Íconos sociales debajo */
+
+    
+.search-bar select {
+  flex: 0 0 120px;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  outline: none;
+  text-align-last: center; /* 👈 centra el texto dentro del select */
+  padding: 8px 0;          /* 👈 centra verticalmente */
+}
+
+
+
+/* BUSCA ESTA PARTE EN TU CÓDIGO */
+.search-bar input {
+  flex: 1; /* Esto hace que el input crezca para ocupar todo el espacio disponible */
+  /* max-width: 220px;  <--- ELIMINA O COMENTA ESTA LÍNEA */
+  border: none;
+  padding: 10px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+
+/* Contenedor de redes sociales */
+/* Redes sociales */
 .social-icons {
   display: flex;
-  gap: 32px;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;              /* 👈 igual que la barra */
+  max-width: 600px;
+  margin: 40px auto 0 auto; /* 👈 baja más las redes */
 }
 
 .social-icons img {
-  width: 32px;
-  height: 32px;
+  width: 36px;             /* 👈 tamaño controlado */
+  height: 36px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -113,50 +134,12 @@ body {
   transform: scale(1.1);
 }
 
-
-
-
-
 /* Fondo mural 16:12 */
 .background {
   background: url("images/FondoIzuochaStoreV2.jpg") no-repeat top center;
   background-size: 100% auto;   /* ocupa todo el ancho, altura proporcional */
   background-attachment: scroll; /* se recorre con el scroll */
   width: 100%;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255,255,255,0.85);
-  padding: 8px 12px;
-  border-radius: 6px;
-  width: 80%; /* 👈 ancho largo */
-  max-width: 900px;
-}
-
-.search-bar select {
-  flex: 0 0 140px; /* ancho fijo para "Animes" */
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.search-bar input {
-  flex: 1; /* ocupa todo el espacio central */
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.search-bar button {
-  flex: 0 0 50px; /* ancho fijo para el botón de lupa */
-  background: #0078d7;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
     /* Línea separadora (si la quieres visible) */
@@ -408,27 +391,29 @@ body {
 <div class="banner">
   <!-- Bloque de búsqueda -->
   <div class="search-bar">
-    <select id="categorySelect">
-      <option value="all">Animes</option>
-    </select>
-    <input id="searchInput" type="text" placeholder="Buscar producto..." />
-    <button id="searchBtn" type="button">
-      <img src="images/iconSearch.png" alt="Buscar" />
-    </button>
-  </div>
+  <select id="categorySelect">
+    <option value="all">Animes</option>
+  </select>
+  <input id="searchInput" type="text" placeholder="Buscar producto..." />
+  <button id="searchBtn" type="button">
+    <img src="images/iconLupa.png" alt="Buscar" />
+  </button>
+</div>
+
 
   <!-- Íconos de redes sociales -->
   <div class="social-icons">
-    <a href="https://facebook.com" target="_blank">
-      <img src="images/iconFacebook.png" alt="Facebook" />
-    </a>
-    <a href="https://instagram.com" target="_blank">
-      <img src="images/iconInstagram.png" alt="Instagram" />
-    </a>
-    <a href="https://tiktok.com" target="_blank">
-      <img src="images/iconTiktok.png" alt="TikTok" />
-    </a>
-  </div>
+  <a href="https://facebook.com" target="_blank">
+    <img src="images/iconFacebook.png" alt="Facebook" />
+  </a>
+  <a href="https://instagram.com" target="_blank">
+    <img src="images/iconInstagram.png" alt="Instagram" />
+  </a>
+  <a href="https://tiktok.com" target="_blank">
+    <img src="images/iconTiktok.png" alt="TikTok" />
+  </a>
+</div>
+
 </div>
 
 
