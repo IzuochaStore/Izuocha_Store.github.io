@@ -54,7 +54,7 @@ body {
   gap: 16px;
 }
 
-/* Barra de búsqueda */
+
 /* Rectángulo de búsqueda */
 .search-bar {
   display: flex;
@@ -62,14 +62,15 @@ body {
   background: rgba(255,255,255,0.9);
   border-radius: 30px;
   padding: 6px 12px;
-  width: 60%;          /* 👈 más corto en general */
-  max-width: 700px;    /* 👈 límite máximo */
+  width: 50%;          /* 👈 más corto en general */
+  max-width: 600px;    /* 👈 límite máximo */
   box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  margin: 0 auto;      /* 👈 centrado */
 }
 
 /* Selector "Animes" */
 .search-bar select {
-  flex: 0 0 140px;
+  flex: 0 0 120px;     /* ancho fijo */
   border: none;
   background: transparent;
   font-weight: 600;
@@ -80,17 +81,17 @@ body {
 /* Campo de texto más corto */
 .search-bar input {
   flex: 1;
-  max-width: 300px;    /* 👈 evita que se extienda demasiado */
+  max-width: 220px;    /* 👈 más corto para no tapar personajes */
   border: none;
   padding: 8px;
   font-size: 0.95rem;
   outline: none;
 }
 
-/* Botón de lupa al final */
+/* Botón de lupa verde Deku */
 .search-bar button {
-  flex: 0 0 50px;       /* ancho fijo */
-  height: 50px;         /* 👈 más alto, no comprimido */
+  flex: 0 0 55px;       /* ancho fijo */
+  height: 55px;         /* 👈 más alto */
   border: none;
   background: #28a745;  /* 👈 verde Deku */
   border-radius: 50%;
@@ -102,8 +103,8 @@ body {
 
 /* Ícono de lupa blanco */
 .search-bar button img {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   filter: brightness(0) invert(1); /* 👈 asegura que se vea blanco */
 }
 
