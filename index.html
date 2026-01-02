@@ -39,17 +39,27 @@ body {
     /* =========================================================
        Banner superior con imagen + buscador + redes
     ==========================================================*/
-    .banner {
-      height: 200px; /* ajusta según tu diseño */
-      background: url("images/bannerIzuochaStore.jpg") no-repeat center center;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 16px;
-    }
+    /* Banner independiente 4:1 */
+.banner {
+  width: 100%;
+  height: 240px; /* ajusta según tu diseño, ej. 960px si quieres exacto */
+  background: url("images/bannerIzuochaStore.jpg") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Fondo mural 16:12 */
+.background {
+  background: url("images/FondoIzuochaStoreV2.jpg") no-repeat top center;
+  background-size: 100% auto;   /* ocupa todo el ancho, altura proporcional */
+  background-attachment: scroll; /* se recorre con el scroll */
+  width: 100%;
+}
+
 
     .search-bar {
       display: flex;
@@ -328,14 +338,32 @@ body {
 
 <body>
   <!-- Banner superior -->
-  <div class="banner">
-    <div class="search-bar">
-      <input id="searchInput" type="text" placeholder="Buscar producto por título o anime..." />
-      <select id="categorySelect">
-        <option value="all">Animes</option>
-      </select>
-      <button id="searchBtn" type="button">Buscar</button>
+  <!-- Banner superior (4:1) -->
+<div class="banner">
+  <div class="search-bar">
+    <input id="searchInput" type="text" placeholder="Buscar producto..." />
+    <select id="categorySelect">
+      <option value="all">Animes</option>
+    </select>
+    <button id="searchBtn" type="button">Buscar</button>
+  </div>
+
+  <div class="social-buttons">
+    <a href="https://facebook.com" target="_blank" class="social fb">Facebook</a>
+    <a href="https://instagram.com" target="_blank" class="social ig">Instagram</a>
+    <a href="https://tiktok.com" target="_blank" class="social tk">TikTok</a>
+  </div>
+</div>
+
+<!-- Fondo mural 16:12 con productos encima -->
+<div class="background">
+  <div class="container">
+    <div class="header">
+      <h1>Catálogo</h1>
     </div>
+    <div class="products" id="productsGrid"></div>
+  </div>
+
 
     <div class="social-buttons">
       <a href="https://facebook.com" target="_blank" class="social fb">Facebook</a>
