@@ -29,11 +29,10 @@
     body {
   font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   color: var(--text);
-  background: url("images/FondoIzuochaStore.jpg") no-repeat center center fixed;
-  background-size: contain;   /* ahora se ve completa */
-  background-color: #000;     /* relleno negro si sobran espacios */
+  background-color: #fff; /* o el color que quieras de fondo */
   line-height: 1.45;
 }
+
 
 
     /* =========================================================
@@ -65,11 +64,11 @@
     /* =========================================================
        Contenedor principal
     ==========================================================*/
-    .container{
-      max-width: 1280px;
-      margin: 24px auto 40px;
-      padding: 0 16px;
-    }
+    .container {
+  padding: 20px;
+  background: transparent; /* antes estaba #fff */
+}
+
 
     /* Header del catálogo (título, búsqueda, etc.) */
     .header{
@@ -125,21 +124,22 @@
     /* =========================================================
        Tarjeta de producto (estilo Inumoon, bordes redondeados)
     ==========================================================*/
-    .product-card{
-      background: var(--bg-card);
-      border-radius: 12px;
-      box-shadow: 0 4px 12px var(--shadow);
-      overflow: hidden;
-      display:flex;
-      flex-direction:column;
-      cursor:pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      backdrop-filter: blur(2px);
-    }
-    .product-card:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-    }
+   .product-card {
+  background: #fff; /* fondo sólido blanco */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12); /* sombra suave */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18); /* sombra más marcada al hover */
+}
+
 
     .product-image{
       width:100%;
@@ -377,19 +377,22 @@
 
 /* Fondo con recorrido vertical en 16:9 empezando desde arriba */
 .scroll-image {
-  height: 120vh; /* 100–200vh según cuánto quieras recorrer */
+  height: 100vh; /* o 120vh si quieres más recorrido */
   background: url("images/FondoIzuochaStoreV2.jpg") no-repeat top center;
-  background-size: cover;       /* llena ancho, mantiene 16:9, sin franjas */
-  background-attachment: fixed; /* fijo para efecto de recorrido */
+  background-size: cover;       /* llena ancho, mantiene proporción */
+  background-attachment: fixed; /* efecto de recorrido */
 }
+
+
 
 /* Neutraliza el separador final si empuja o tapa la obra */
 .bottom-space {
-  height: 0;       /* evita empuje excesivo */
+  height: 0;
   min-height: 0;
   margin: 0;
   padding: 0;
 }
+
 
 /* Evita que el grid quede flotando a mitad del scroll */
 .products, #productsGrid {
