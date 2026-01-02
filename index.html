@@ -42,15 +42,16 @@ body {
     /* Banner independiente 4:1 */
 .banner {
   width: 100%;
-  height: 240px; /* ajusta según tu diseño, ej. 960px si quieres exacto */
+  aspect-ratio: 4 / 1; /* 👈 mantiene la proporción original 3840x960 */
   background: url("images/bannerIzuochaStore.jpg") no-repeat center center;
-  background-size: cover;
+  background-size: cover; /* llena el ancho manteniendo proporción */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 12px;
 }
+
 
 /* Fondo mural 16:12 */
 .background {
