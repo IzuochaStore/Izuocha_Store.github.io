@@ -51,6 +51,8 @@ body {
 
 
 /* Rectángulo de búsqueda */
+
+/* Rectángulo de búsqueda */
 .search-bar {
   display: flex;
   align-items: center;
@@ -58,15 +60,32 @@ body {
   border-radius: 30px;
   width: 50%;
   max-width: 600px;
-  height: 50px;            /* 👈 altura fija del rectángulo */
+  height: 48px;            /* 👈 altura fija */
   box-shadow: 0 2px 6px rgba(0,0,0,0.25);
   margin: -8px auto 0 auto;
   overflow: hidden;
 }
 
+/* Botón verde al final */
+.search-bar button {
+  flex: 0 0 60px;          /* ancho fijo */
+  height: 48px;            /* 👈 misma altura que la barra */
+  border: none;
+  background: #28a745;
+  border-radius: 0 30px 30px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.search-bar button img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
 
-
+    
 .search-bar select {
   flex: 0 0 120px;
   border: none;
@@ -89,22 +108,6 @@ body {
   outline: none;
 }
 
-/* Botón verde al final */ 
-.search-bar button {
-  flex: 0 0 70px;
-  height: 100%;             /* 👈 ahora sí ocupa toda la altura */
-  border: none;
-  background: #28a745;
-  border-radius: 0 30px 30px 0; /* 👈 bordes derechos semi redondos */
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-    .search-bar button img {
-      width: 22px; 
-      height: 22px; 
-      filter: brightness(0) invert(1); /* 👈 lupa blanca */
 
 
 
@@ -112,16 +115,16 @@ body {
 /* Redes sociales */
 .social-icons {
   display: flex;
-  justify-content: space-between; /* F izquierda, i centro, T derecha */
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  max-width: 600px; /* 👈 mismo ancho que la barra */
-  margin: 60px auto 0 auto; /* 👈 baja más las redes (ajusta este valor según tu referencia visual) */
+  width: 50%;              /* 👈 igual que la barra */
+  max-width: 600px;
+  margin: 40px auto 0 auto; /* 👈 baja más las redes */
 }
 
 .social-icons img {
-  width: 48px;
-  height: 48px;
+  width: 36px;             /* 👈 tamaño controlado */
+  height: 36px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
