@@ -435,14 +435,15 @@
     }
 }
 
-/* AJUSTES EXCLUSIVOS PARA MÓVILES (Android/iPhone) */
+
+    /* AJUSTES EXCLUSIVOS PARA MÓVILES (Android/iPhone) */
 @media (max-width: 600px) {
     
     /* 1. Banner con fondo blanco y proporción 12:3 */
     .banner {
         height: auto !important;
-        aspect-ratio: 12 / 3 !important; /* Relación de aspecto solicitada */
-        background: #ffffff !important; /* Fondo blanco puro */
+        aspect-ratio: 12 / 3 !important; 
+        background: #ffffff !important; 
         background-image: url("images/BannerBlancoAndroid.jpg") !important;
         background-size: cover !important;
         overflow: hidden !important;
@@ -459,7 +460,7 @@
         height: 100% !important;
         width: auto !important;
         z-index: 1 !important;
-        filter: grayscale(100%) contrast(1.1); /* Efecto Blanco y Negro */
+        filter: grayscale(100%) contrast(1.1); 
         pointer-events: none;
     }
 
@@ -473,28 +474,41 @@
         left: auto !important;
     }
 
-    /* 3. Ajuste de Barra de Búsqueda para no tapar caras */
+    /* 3. Ajuste de Barra de Búsqueda - DISTRIBUCIÓN CORREGIDA */
     .search-bar {
-        width: 60% !important; /* Más estrecha para que se vean los personajes a los lados */
-        height: 32px !important;
+        width: 65% !important; /* Mantenemos un ancho que deje ver a los personajes de los lados */
+        height: 34px !important;
         margin: 10px auto 0 auto !important;
         z-index: 10 !important;
         border-radius: 8px !important;
+        display: flex !important;
+        overflow: hidden !important;
     }
 
     .search-bar select {
-        flex: 0 0 80px !important;
-        font-size: 0.75rem !important;
-        background-size: 15px !important;
+        flex: 0 0 70px !important; /* ACORTADO: botón verde más pequeño */
+        width: 70px !important;
+        font-size: 0.7rem !important;
+        padding: 0 12px 0 4px !important;
+        background-size: 10px !important; /* Flecha más pequeña para ganar espacio */
+        background-position: right 2px center !important;
     }
 
     .search-bar input {
+        flex: 1 !important; /* El buscador ahora ocupa todo el espacio restante */
+        min-width: 0 !important;
         font-size: 0.8rem !important;
+        padding: 0 8px !important;
+    }
+
+    .search-bar button {
+        flex: 0 0 40px !important; /* Botón de lupa con ancho fijo */
+        width: 40px !important;
     }
 
     /* 4. Redes y Personajes (Deku/Uraraka) */
     .social-icons {
-        width: 55% !important; /* Alineado con el buscador */
+        width: 55% !important; 
         margin: 5px auto 0 auto !important;
         z-index: 10 !important;
     }
@@ -515,6 +529,7 @@
         transform: translateY(2px) !important;
     }
 }
+
     
   </style>
 </head>
