@@ -361,59 +361,77 @@
       }
     }
 
-/* AJUSTES ESPECÍFICOS PARA PANTALLA MINIMIZADA (Notebook ventana pequeña) */
 /* AJUSTE PARA VISTA MINIMIZADA (Notebook ventana pequeña) */
 @media (min-width: 601px) and (max-width: 1024px) {
     
-    /* 1. Asegurar que nada se salga del banner */
+    /* 1. Contenedor Banner: Forzar que nada se escape */
     .banner {
         overflow: hidden !important;
-        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
 
-    /* 2. Ajuste manual de IzuochaAdult para tapar el fondo */
-    .img-overlay {
-        left: 0 !important;
-        transform: none !important;
-        height: 100% !important; /* Mismo alto que el banner */
-        width: auto !important;
-        margin-left: 0 !important; /* Ajusta a -1% o -2% si ves que queda un borde de la imagen de abajo */
-        object-fit: contain !important;
-        z-index: 1 !important;
-    }
-
-    /* 3. Barra de búsqueda: Reducir ancho para que no empuje iconos */
+    /* 2. Barra de búsqueda: Ajuste de ancho y visibilidad de lupa */
     .search-bar {
-        width: 70% !important; 
+        width: 85% !important; 
+        max-width: 550px !important;
         margin-top: 15px !important;
+        display: flex !important; /* Garantiza que select, input y button coexistan */
     }
 
-    /* 4. Redes Sociales: Recuperar Facebook y alinear */
+    /* 3. Redes Sociales y Personajes: Alineación Total */
     .social-icons {
-        width: 75% !important; /* Un poco más ancha que la barra para que Facebook respire */
+        width: 85% !important; /* Mismo ancho que la barra para alineación vertical */
         max-width: 550px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        padding: 0 10px !important; /* Espacio interno para que Facebook no toque el borde */
+        display: flex !important;
+        justify-content: space-between !important; /* Reparte: Facebook inicio, Instagram centro, TikTok final */
+        align-items: flex-end !important;
+        margin: 15px auto 0 auto !important;
+        padding: 0 !important;
         box-sizing: border-box !important;
     }
 
-    /* Forzar visibilidad de Facebook */
-    .social-icons a:first-child {
-        display: block !important;
-        visibility: visible !important;
+    /* Forzar que Facebook y todos los enlaces sean visibles */
+    .social-icons a {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        z-index: 20 !important;
     }
 
-    /* 5. Nivelar personajes en el límite inferior */
+    .social-icons a img {
+        width: 32px !important; /* Un poco más pequeños para asegurar espacio */
+        height: 32px !important;
+        margin-bottom: 35px !important; /* Espacio para que los personajes quepan debajo */
+    }
+
+    /* 4. Personajes: Deku Oveja y Uraraka Gata nivelados */
     .personaje-social {
-        height: 55px !important; /* Tamaño ajustado para no tapar la barra */
+        height: 50px !important; /* Ajuste para que no choquen con los iconos */
+        width: auto !important;
         margin-bottom: 0 !important;
-        vertical-align: bottom !important;
+        position: relative !important;
+        bottom: 0 !important;
+        z-index: 15 !important;
     }
 
-    /* Sincronizar pies de Deku con Uraraka */
+    /* Sincronización exacta de pies (Deku con Uraraka) */
     img[alt="Deku"].personaje-social {
-        margin-bottom: -2px !important; /* Ajuste milimétrico hacia abajo */
+        transform: translateY(3px) !important; /* Bajamos a Deku para igualar a Uraraka */
+    }
+
+    /* 5. Izuocha Adulto: Cubrimiento total a la izquierda */
+    .img-overlay {
+        position: absolute !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        height: 100% !important;
+        width: auto !important;
+        transform: none !important;
+        z-index: 1 !important;
+        object-fit: contain !important;
+        margin-left: -2px !important; /* Tapa cualquier filo de la imagen base */
     }
 }
     
