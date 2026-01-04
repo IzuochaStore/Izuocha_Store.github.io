@@ -62,36 +62,50 @@
 }
 
     /* BARRA DE BÚSQUEDA ACTUALIZADA */
+/* BARRA DE BÚSQUEDA - ESTRUCTURA GENERAL */
 .search-bar {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 18px;
+    background: #ffffff;
+    border-radius: 20px; /* Bordes más redondeados según tu imagen */
     width: 50%;
     max-width: 600px;
     height: 48px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-    /* Ajusta este margen para bajar la barra a tu gusto */
-    margin: 20px auto 0 auto; 
+    margin: 30px auto 0 auto; /* Bajamos la barra un poco más */
     overflow: hidden;
     position: relative;
     z-index: 10;
-    border: 2px solid #28a745; /* Contorno verde igual a la lupa */
+    border: 2px solid #28a745; /* Contorno verde unificado */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Estilo del cuadro de Animes (Lado izquierdo) */
+/* SELECTOR IZQUIERDO (Animes) */
 .search-bar select {
-    flex: 0 0 130px;
+    flex: 0 0 140px; /* Un poco más ancho para dar espacio */
     height: 100%;
     border: none;
-    background: #28a745; /* Verde Deku igual a la lupa */
-    color: white;        /* Letra blanca a primera vista */
-    font-weight: 600;
-    font-size: 0.95rem;
+    background: #28a745; 
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
     outline: none;
-    text-align-last: center;
     cursor: pointer;
-    transition: background 0.3s;
+    
+    /* CENTRADO DE LA FLECHA: */
+    /* Aumentamos el espacio a la derecha para que la flecha se mueva a la izquierda */
+    padding-left: 15px;
+    padding-right: 25px; 
+    
+    /* Reset nativo para asegurar que el centrado funcione en todos los navegadores */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    /* Re-insertamos una flecha personalizada para control total de su posición */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center; /* Ajusta este '12px' para mover la flecha */
+    background-size: 18px;
 }
 
 /* Para que la letra siga siendo blanca al hacer click y dentro de las opciones */
@@ -112,31 +126,40 @@
     box-shadow: none;
 }
 
-    .search-bar input {
-      flex: 1;
-      border: none;
-      padding: 10px;
-      font-size: 0.95rem;
-      outline: none;
-    }
+   /* BOTÓN DE LUPA (Derecha) */
+.search-bar button {
+    flex: 0 0 60px;
+    height: 100%;
+    border: none;
+    background: #28a745;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0; /* Evita espacios residuales */
+    padding: 0;
+    outline: none;
+}
 
-    .search-bar button {
-      flex: 0 0 70px;
-      height: 100%;
-      border: none;
-      background: #28a745; 
-      border-radius: 0 18px 18px 0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+/* CORRECCIÓN DEL BORDE BLANCO EN LA IMAGEN DE LUPA */
+.search-bar button img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+    /* Quitamos cualquier borde que la imagen pueda heredar */
+    border: none; 
+    display: block;
+}
 
-    .search-bar button img {
-      width: 20px;
-      height: 20px;
-      filter: brightness(0) invert(1);
-    }
+/* INPUT DE TEXTO */
+.search-bar input {
+    flex: 1;
+    border: none;
+    padding: 0 15px;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
+}
 
     /* REDES SOCIALES Y PERSONAJES INTERCALADOS */
     .social-icons {
