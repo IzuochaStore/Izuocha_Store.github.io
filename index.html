@@ -46,7 +46,19 @@
       align-items: center;
       justify-content: center;
       gap: 16px;
+      position: relative;
     }
+
+    .img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%; /* Ocupa todo el alto del banner */
+  width: auto;
+  z-index: 1; /* Detrás del buscador y botones */
+  pointer-events: none; /* Permite hacer clic a través de ella */
+}
 
     .search-bar {
       display: flex;
