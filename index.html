@@ -32,8 +32,8 @@
       line-height: 1.45;
     }
 
-    /* =========================================================
-       Banner superior (Configuración Base para Android)
+  /* =========================================================
+       BANNER Y BUSCADOR
     ==========================================================*/
     .banner {
       width: 100%;
@@ -48,7 +48,6 @@
       gap: 16px;
     }
 
-    /* BARRA DE BÚSQUEDA - ARREGLO BOTÓN AL FINAL */
     .search-bar {
       display: flex;
       align-items: center;
@@ -69,24 +68,23 @@
       font-weight: 600;
       font-size: 0.95rem;
       outline: none;
-      text-align-last: center; 
+      text-align-last: center;
       padding: 8px 0;
     }
 
     .search-bar input {
-      flex: 1; /* Esto empuja el botón verde al final */
+      flex: 1;
       border: none;
       padding: 10px;
       font-size: 0.95rem;
       outline: none;
-      /* Eliminado el max-width que bloqueaba el crecimiento */
     }
 
     .search-bar button {
       flex: 0 0 70px;
       height: 100%;
       border: none;
-      background: #28a745;   /* verde Deku */
+      background: #28a745; 
       border-radius: 0 18px 18px 0;
       cursor: pointer;
       display: flex;
@@ -100,29 +98,37 @@
       filter: brightness(0) invert(1);
     }
 
-    /* REDES SOCIALES */
+    /* REDES SOCIALES Y PERSONAJES INTERCALADOS */
     .social-icons {
-      display: flex; /*Define que los iconos se vean en fila*/
+      display: flex;
       justify-content: space-between;
-      align-items: center;
-      width: 50%;
-      max-width: 600px;
-      margin: 15px auto 0 auto; /* Ajustado para que quepa en banners delgados */
+      align-items: flex-end; /* Alinea los pies a la base */
+      width: 65%;           
+      max-width: 750px;
+      margin: 15px auto 0 auto;
     }
 
-    .social-icons img {
+    .social-icons a img {
       width: 36px;
       height: 36px;
+      margin-bottom: 12px; /* Sube los iconos para que no queden en el suelo */
       cursor: pointer;
       transition: transform 0.2s ease;
     }
 
-    .social-icons img:hover {
-      transform: scale(1.1);
+    .social-icons a img:hover {
+      transform: scale(1.2);
+    }
+
+    .personaje-social {
+      height: 85px;         
+      width: auto;
+      object-fit: contain;
+      pointer-events: none; 
     }
 
     /* =========================================================
-       Resto de Estilos (Productos, Fondo, Modal)
+       RESTO DE ESTILOS (PRODUCTOS Y MODAL)
     ==========================================================*/
     .background {
       background: url("images/FondoIzuochaStoreV2.jpg") no-repeat top center;
@@ -132,24 +138,26 @@
     }
 
     .container { padding: 20px; background: transparent; }
-    .header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:16px;
+    
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
     }
-    .header h1{
-      color:#fff;
+    
+    .header h1 {
+      color: #fff;
       text-shadow: 0 2px 6px rgba(0,0,0,0.35);
-      font-size:1.6rem;
-      font-weight:700;
+      font-size: 1.6rem;
+      font-weight: 700;
     }
 
-    .products{
-      display:grid;
+    .products {
+      display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap:20px;
+      gap: 20px;
     }
 
     .product-card {
@@ -162,111 +170,121 @@
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
     .product-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(0,0,0,0.18);
     }
-    .product-image{ width:100%; height:240px; overflow:hidden; position:relative; }
-    .product-image img{ width:100%; height:100%; object-fit:cover; display:block; }
-    
-    .product-info{
-      padding:12px 14px 10px;
-      text-align:center;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      flex-grow:1;
-    }
-    .product-info .brand{ font-size:0.88rem; color:#666; }
-    .product-info .name{ font-weight:700; font-size:1.02rem; color:#222; }
-    .product-info .price{ color: var(--accent-red); font-weight:800; font-size:1.02rem; }
 
-    .stock{
+    .product-image { width: 100%; height: 240px; overflow: hidden; position: relative; }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .product-info {
+      padding: 12px 14px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-grow: 1;
+    }
+
+    .product-info .brand { font-size: 0.88rem; color: #666; }
+    .product-info .name { font-weight: 700; font-size: 1.02rem; color: #222; }
+    .product-info .price { color: var(--accent-red); font-weight: 800; font-size: 1.02rem; }
+
+    .stock {
       background: var(--accent-pink);
-      color:#fff;
-      text-align:center;
-      padding:10px 12px;
-      font-weight:700;
+      color: #fff;
+      text-align: center;
+      padding: 10px 12px;
+      font-weight: 700;
       border-top: 1px solid rgba(0,0,0,0.06);
     }
-    .stock.agotado{ background:#b2b2b2; color:#fff; }
 
-    .modal{
-      position:fixed;
-      inset:0;
+    .stock.agotado { background: #b2b2b2; color: #fff; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
       background: rgba(0,0,0,0.82);
-      display:none;
-      align-items:center;
-      justify-content:center;
+      display: none;
+      align-items: center;
+      justify-content: center;
       z-index: 999;
       padding: 24px;
     }
-    .modal .sheet{
+
+    .modal .sheet {
       width: min(920px, 94vw);
       max-height: 86vh;
-      background:#fff;
-      border-radius:14px;
-      display:flex;
-      overflow:hidden;
-      flex-direction:column;
+      background: #fff;
+      border-radius: 14px;
+      display: flex;
+      overflow: hidden;
+      flex-direction: column;
     }
-    .modal .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid #eee;
-      background:#f7f7f7;
-      padding:10px 14px;
+
+    .modal .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      background: #f7f7f7;
+      padding: 10px 14px;
     }
-    .modal .content{ display:flex; flex-direction:row; padding: 12px; }
-    .carousel{ flex: 1.15; position:relative; background: #fafafa; min-height: 360px; display:flex; align-items:center; justify-content:center; }
-    .carousel img{ width:100%; height:100%; object-fit:contain; }
-    .carousel .btn{ position:absolute; top:50%; transform: translateY(-50%); background: rgba(0,0,0,0.38); color:#fff; border:none; font-size:2rem; padding:0 12px; cursor:pointer; }
-    .carousel .btn.left{ left: 8px; }
-    .carousel .btn.right{ right: 8px; }
-    .dots{ position:absolute; bottom:8px; left:0; right:0; display:flex; justify-content:center; gap:6px; }
-    .dot{ width:8px;height:8px;border-radius:50%; background:#cfcfcf; cursor:pointer; }
-    .dot.active{ background:#666; }
-    .detail{ flex: 0.85; display:flex; flex-direction:column; padding: 10px 12px; gap: 10px; }
+
+    .modal .content { display: flex; flex-direction: row; padding: 12px; }
+    
+    .carousel { flex: 1.15; position: relative; background: #fafafa; min-height: 360px; display: flex; align-items: center; justify-content: center; }
+    .carousel img { width: 100%; height: 100%; object-fit: contain; }
+    .carousel .btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.38); color: #fff; border: none; font-size: 2rem; padding: 0 12px; cursor: pointer; }
+    .carousel .btn.left { left: 8px; }
+    .carousel .btn.right { right: 8px; }
+    
+    .dots { position: absolute; bottom: 8px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #cfcfcf; cursor: pointer; }
+    .dot.active { background: #666; }
+    
+    .detail { flex: 0.85; display: flex; flex-direction: column; padding: 10px 12px; gap: 10px; }
 
     /* =========================================================
-       Responsividad General
+       RESPONSIVIDAD
     ==========================================================*/
-    @media (max-width: 1100px){ 
-      .products{ grid-template-columns: repeat(3, 1fr); } }
-    
-    @media (max-width: 900px){
-      .products{ grid-template-columns: repeat(2, 1fr); }
-      .modal .content{ flex-direction:column; }
-      .carousel{ min-height: 320px; }
+    @media (max-width: 1100px) { .products { grid-template-columns: repeat(3, 1fr); } }
+
+    @media (max-width: 900px) {
+      .products { grid-template-columns: repeat(2, 1fr); }
+      .modal .content { flex-direction: column; }
+      .carousel { min-height: 320px; }
+      .social-icons { width: 90%; }
+      .personaje-social { height: 60px; }
     }
 
-    @media (max-width: 600px){
-      .products{ grid-template-columns: 1fr; }
+    @media (max-width: 600px) {
+      .products { grid-template-columns: 1fr; }
       .search-bar { width: 90%; }
     }
-    
-    /* --- CAMBIOS ESPECÍFICOS PARA NOTEBOOK --- */
+
+    /* NOTEBOOK VENTANA CHICA */
     @media (min-width: 900px) {
       .banner {
         aspect-ratio: 6 / 1; 
         background-image: url("images/BannerNotebook.jpg");
         gap: 16px;
       }
-      /* Esta es la vista minimizada de Notebook */
-      .social-icons {
-        margin-top: 5px; 
-      }
+      .social-icons { margin-top: 5px; }
+      .personaje-social { height: 75px; }
     }
 
-    /* NUEVO: Ajuste exclusivo para Pantalla Completa (Notebook Maximizada) */
+    /* NOTEBOOK PANTALLA COMPLETA */
     @media (min-width: 1300px) {
       .social-icons {
-        /* Aumentamos este número para que los botones bajen en el eje Y */
-        margin-top: 35px; 
+        margin-top: 35px; /* Los baja en el eje Y */
+      }
+      .personaje-social { 
+        height: 110px;    /* Los hace más grandes */
       }
     }
-
     
   </style>
 </head>
@@ -285,10 +303,17 @@
   </div>
 
   <div class="social-icons">
-    <a href="https://facebook.com" target="_blank"><img src="images/iconFacebook.png" alt="Facebook" /></a>
-    <a href="https://instagram.com" target="_blank"><img src="images/iconInstagram.png" alt="Instagram" /></a>
-    <a href="https://tiktok.com" target="_blank"><img src="images/iconTiktok.png" alt="TikTok" /></a>
-  </div>
+  <a href="https://facebook.com" target="_blank"><img src="images/iconFacebook.png" alt="Facebook" /></a>
+  
+  <img src="images/DekuSheep.png" class="personaje-social" alt="Deku" />
+
+  <a href="https://instagram.com" target="_blank"><img src="images/iconInstagram.png" alt="Instagram" /></a>
+
+  <img src="images/UrarakaCat.jpg" class="personaje-social" alt="Uraraka" />
+
+  <a href="https://tiktok.com" target="_blank"><img src="images/iconTiktok.png" alt="TikTok" /></a>
+</div>
+  
 </div>
 
 <div class="background">
