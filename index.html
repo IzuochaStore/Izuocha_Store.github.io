@@ -436,24 +436,24 @@
 }
 
 
-    /* AJUSTES EXCLUSIVOS PARA MÓVILES (Android/iPhone) */
+/* AJUSTES EXCLUSIVOS PARA MÓVILES (Android/iPhone) */
 @media (max-width: 600px) {
     
-    /* 1. Banner con fondo blanco y proporción 12:3 */
+    /* 1. Banner: Actualizado con el nuevo archivo y proporción 12:4 */
     .banner {
         height: auto !important;
-        aspect-ratio: 12 / 3 !important; 
+        aspect-ratio: 12 / 4 !important; /* Proporción para el nuevo banner */
         background: #ffffff !important; 
-        background-image: url("images/BannerBlancoAndroid.jpg") !important;
+        background-image: url("images/BannerBlancoAndroid124.jpg") !important; /* Nombre del nuevo archivo */
         background-size: cover !important;
         overflow: hidden !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: space-between !important;
+        justify-content: flex-start !important; 
         padding-bottom: 5px;
     }
 
-    /* 2. Imágenes Izuocha en Blanco y Negro */
+    /* 2. Imágenes Izuocha (Se mantienen en los extremos) */
     .img-overlay {
         position: absolute !important;
         bottom: 0 !important;
@@ -464,72 +464,64 @@
         pointer-events: none;
     }
 
-    .izuocha-left {
-        left: 0 !important;
-        margin-left: 0 !important;
-    }
+    .izuocha-left { left: 0 !important; }
+    .izuocha-right { right: 0 !important; left: auto !important; }
 
-    .izuocha-right {
-        right: 0 !important;
-        left: auto !important;
-    }
-
-    /* 3. Ajuste de Barra de Búsqueda - DISTRIBUCIÓN CORREGIDA */
+    /* 3. Barra de Búsqueda: Más alta (40px) y con el botón Animes corto */
     .search-bar {
-        width: 65% !important; /* Mantenemos un ancho que deje ver a los personajes de los lados */
-        height: 34px !important;
-        margin: 10px auto 0 auto !important;
+        width: 65% !important; 
+        height: 40px !important; /* Altura ideal para móviles */
+        margin: 15px auto 0 auto !important; /* Espacio superior para no chocar con el borde */
         z-index: 10 !important;
-        border-radius: 8px !important;
+        border-radius: 10px !important;
         display: flex !important;
         overflow: hidden !important;
+        border: 1px solid #e0e0e0 !important; /* Borde suave para resaltar sobre el blanco */
     }
 
     .search-bar select {
-        flex: 0 0 70px !important; /* ACORTADO: botón verde más pequeño */
-        width: 70px !important;
-        font-size: 0.7rem !important;
-        padding: 0 12px 0 4px !important;
-        background-size: 10px !important; /* Flecha más pequeña para ganar espacio */
-        background-position: right 2px center !important;
+        flex: 0 0 75px !important; /* Ancho corto para "Animes" */
+        width: 75px !important;
+        font-size: 0.8rem !important;
+        padding: 0 12px 0 5px !important;
+        background-size: 10px !important;
+        background-position: right 3px center !important;
     }
 
     .search-bar input {
-        flex: 1 !important; /* El buscador ahora ocupa todo el espacio restante */
+        flex: 1 !important; 
         min-width: 0 !important;
-        font-size: 0.8rem !important;
-        padding: 0 8px !important;
+        font-size: 0.9rem !important;
+        padding: 0 10px !important;
     }
 
     .search-bar button {
-        flex: 0 0 40px !important; /* Botón de lupa con ancho fijo */
-        width: 40px !important;
+        flex: 0 0 45px !important; 
+        width: 45px !important;
     }
 
-    /* 4. Redes y Personajes (Deku/Uraraka) */
+    /* 4. Redes y Personajes pequeños */
     .social-icons {
-        width: 55% !important; 
-        margin: 5px auto 0 auto !important;
+        width: 60% !important; 
+        margin: 8px auto 0 auto !important;
         z-index: 10 !important;
     }
 
     .social-icons a img {
-        width: 24px !important;
-        height: 24px !important;
-        margin-bottom: 20px !important;
+        width: 26px !important;
+        height: 26px !important;
+        margin-bottom: 10px !important;
     }
 
     .personaje-social {
-        height: 40px !important;
+        height: 45px !important;
         bottom: 0 !important;
     }
 
-    /* Nivelar pies de Deku y Uraraka */
     img[alt="Deku"].personaje-social {
         transform: translateY(2px) !important;
     }
 }
-
     
   </style>
 </head>
