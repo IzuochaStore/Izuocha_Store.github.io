@@ -83,26 +83,37 @@
 
 /* LADO IZQUIERDO: Selector Animes */
 .search-bar select {
-    flex: 0 0 135px;
+    flex: 0 0 140px;
     height: 100%;
     border: none;
     background: #28a745;
     color: white;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 1rem; /* Tamaño de letra */
     outline: none;
     cursor: pointer;
     text-align: center;
-    /* Mismo radio para que encaje perfecto a la izquierda */
-    border-radius: 12px 0 0 12px;
     
+    /* Bordes semi-redondeados (12px) */
+    border-radius: 12px 0 0 12px;
+
     appearance: none;
     -webkit-appearance: none;
-    padding: 0 25px 0 10px;
+    -moz-appearance: none;
+
+    /* Ajuste de espacio para centrar texto y flecha */
+    padding: 0 30px 0 10px;
+
+    /* FLECHA BLANCA ACTUALIZADA */
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 14px;
+    
+    /* Posición de la flecha */
+    background-position: right 12px center; 
+    
+    /* TAMAÑO AJUSTADO: 
+       Cambiamos a 20px o 22px para que iguale visualmente a la letra */
+    background-size: 20px; 
 }
 
 /* Para que la letra siga siendo blanca al hacer click y dentro de las opciones */
