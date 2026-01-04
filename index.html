@@ -52,12 +52,13 @@
     .img-overlay {
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100%; /* Ocupa todo el alto del banner */
-  width: auto;
-  z-index: 1; /* Detrás del buscador y botones */
-  pointer-events: none; /* Permite hacer clic a través de ella */
+  left: 0;              /* La pegamos al inicio izquierdo */
+  height: 100%;         /* Que mida lo mismo que el banner de alto */
+  width: auto;          /* Que mantenga su proporción */
+  z-index: 1;           /* Por debajo de los botones */
+  pointer-events: none; /* Para que puedas hacer clic en lo que haya debajo */
+  /* AJUSTE FINO: Si no queda exactamente encima, cambia este % */
+  margin-left: 2%;      
 }
 
     .search-bar {
@@ -305,7 +306,9 @@
  
 <div class="banner">
   <img src="images/IzuochaAdult.jpg" class="img-overlay" alt="Izuocha Adulto" />
+  
   <div class="search-bar">
+  
     <select id="categorySelect">
       <option value="all">Animes</option>
     </select>
