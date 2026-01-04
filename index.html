@@ -439,7 +439,6 @@
 /* AJUSTES EXCLUSIVOS PARA MÓVILES (Android/iPhone) */
 @media (max-width: 600px) {
     
-    /* 1. Banner: Mantiene proporción y nuevo fondo */
     .banner {
         height: auto !important;
         aspect-ratio: 12 / 4 !important; 
@@ -453,11 +452,11 @@
         position: relative !important;
     }
 
-    /* 2. Imágenes Izuocha: Tocando el fondo y bien proporcionadas */
+    /* 1. Izuocha Adulto: Movido más a la izquierda */
     .img-overlay {
         position: absolute !important;
-        bottom: 0 !important; /* Vuelven a tocar el suelo del banner */
-        height: 80% !important; /* Tamaño equilibrado para no chocar arriba */
+        bottom: 0 !important;
+        height: 80% !important;
         width: auto !important;
         z-index: 1 !important;
         filter: grayscale(100%) contrast(1.1); 
@@ -465,53 +464,60 @@
         object-fit: contain !important;
     }
 
-    .izuocha-left { left: 0 !important; }
-    .izuocha-right { right: 0 !important; left: auto !important; }
+    .izuocha-left { 
+        left: -5% !important; /* Valor negativo para pegarlo bien al borde izquierdo */
+    }
 
-    /* 3. Barra de Búsqueda: Limpieza de bordes y redondeado */
+    .izuocha-right { 
+        right: 0 !important; 
+        left: auto !important; 
+    }
+
+    /* 2. Barra de Búsqueda: Limpia y sin bordes blancos */
     .search-bar {
         width: 65% !important; 
         height: 38px !important;
         margin: 12px auto 0 auto !important;
         z-index: 10 !important;
-        border-radius: 10px !important; /* Redondeado suave y uniforme */
+        border-radius: 10px !important;
         display: flex !important;
         overflow: hidden !important;
-        border: none !important; /* Eliminamos bordes dobles blancos */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important; /* Sombra sutil para definirla */
+        border: none !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
 
-    /* Selector verde con flecha centrada */
     .search-bar select {
-        flex: 0 0 85px !important; /* Un poco más de ancho para centrar la flecha */
+        flex: 0 0 85px !important;
         width: 85px !important;
         font-size: 0.75rem !important;
-        padding: 0 20px 0 8px !important; /* Más espacio a la derecha para la flecha */
-        background-position: right 8px center !important; /* Flecha más alejada del texto */
+        padding: 0 20px 0 8px !important;
+        background-position: right 8px center !important;
         background-size: 10px !important;
         border: none !important;
     }
 
     .search-bar input {
         flex: 1 !important;
-        min-width: 0 !important;
         font-size: 0.85rem !important;
-        border: none !important; /* Evita bordes internos */
+        border: none !important;
         padding: 0 10px !important;
-        background-color: #f9f9f9 !important; /* Fondo gris muy tenue para el input */
+        outline: none !important;
     }
 
     .search-bar button {
         flex: 0 0 40px !important;
-        width: 40px !important;
         border: none !important;
     }
 
-    /* 4. Redes y Personajes pequeños (Gata y Cordero) */
+    /* 3. Redes y Posicionamiento de Gata/Oveja */
     .social-icons {
-        width: 55% !important; 
+        width: 60% !important; 
         margin: 5px auto 0 auto !important;
         z-index: 10 !important;
+        position: relative !important; /* Necesario para posicionar a los pequeños */
+        display: flex !important;
+        justify-content: space-around !important;
+        align-items: center !important;
     }
 
     .social-icons a img {
@@ -520,16 +526,22 @@
         margin-bottom: 15px !important;
     }
 
+    /* Ajuste Individual de Personajes Sociales */
     .personaje-social {
-        height: 35px !important; /* Tamaño reducido para que no suban tanto */
-        bottom: 0 !important; /* Asegura que toquen el suelo */
+        height: 35px !important;
+        bottom: -5px !important; /* Los bajamos para que "pisen" el fondo del banner */
         position: absolute !important;
     }
 
-    /* Nivelación final de personajes sociales */
+    /* Deku Oveja: Entre Facebook e Instagram */
     img[alt="Deku"].personaje-social {
-        transform: translateY(0) !important;
-        left: 35% !important; /* Ajusta según necesites centrarlos */
+        left: 20% !important; 
+    }
+
+    /* Uraraka Gata: Entre Instagram y Tiktok */
+    img[alt="Uraraka"].personaje-social {
+        left: 65% !important; /* Movida a la derecha de Instagram */
+        right: auto !important;
     }
 }
     
