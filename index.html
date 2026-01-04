@@ -434,6 +434,66 @@
         margin-left: -2px !important; /* Tapa cualquier filo de la imagen base */
     }
 }
+
+/* AJUSTES EXCLUSIVOS PARA MÓVILES (Android/iPhone) */
+@media (max-width: 600px) {
+    
+    /* 1. Banner: Ajustar altura para que respire */
+    .banner {
+        height: 180px !important; /* Un poco más alto para dar espacio a los iconos */
+        overflow: hidden !important;
+    }
+
+    /* 2. Izuocha Adulto: Que no tape todo el centro */
+    .img-overlay {
+        height: 100% !important;
+        width: auto !important;
+        left: 0 !important;
+        margin-left: -10% !important; /* La pegamos a la izquierda */
+        opacity: 0.8; /* Opcional: un poco de transparencia para que no sature */
+    }
+
+    /* 3. Barra de búsqueda: Más pequeña y centrada */
+    .search-bar {
+        width: 90% !important; 
+        height: 38px !important; /* Más delgada para móvil */
+        margin: 10px auto 0 auto !important;
+        border-radius: 10px !important;
+    }
+
+    .search-bar select {
+        flex: 0 0 100px !important; /* Menos ancho para el verde de la izquierda */
+        font-size: 0.8rem !important;
+        background-size: 14px !important; /* Flecha más pequeña */
+    }
+
+    .search-bar input {
+        font-size: 0.8rem !important;
+    }
+
+    /* 4. Redes y Personajes: Organización compacta */
+    .social-icons {
+        width: 95% !important;
+        justify-content: space-around !important; /* Distribución uniforme */
+        margin-top: 5px !important;
+    }
+
+    .social-icons a img {
+        width: 28px !important; /* Iconos más pequeños */
+        height: 28px !important;
+        margin-bottom: 25px !important; /* Menos elevación */
+    }
+
+    /* 5. Deku y Uraraka versión mini */
+    .personaje-social {
+        height: 45px !important;
+        bottom: -2px !important;
+    }
+
+    /* Ocultar elementos que estorben (opcional) */
+    /* Si los personajes del fondo del banner original molestan, 
+       puedes ajustar el margin-left de .img-overlay hasta taparlos */
+}
     
   </style>
 </head>
