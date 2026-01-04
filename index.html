@@ -46,57 +46,130 @@
       align-items: center;
       justify-content: center;
       gap: 16px;
+      position: relative;
     }
 
-    .search-bar {
-      display: flex;
-      align-items: center;
-      background: rgba(255,255,255,0.9);
-      border-radius: 18px;
-      width: 50%;
-      max-width: 600px;
-      height: 48px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-      margin: -8px auto 0 auto;
-      overflow: hidden;
-    }
+    .img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;              /* La pegamos al inicio izquierdo */
+  height: 100%;         /* Que mida lo mismo que el banner de alto */
+  width: auto;          /* Que mantenga su proporción */
+  z-index: 1;           /* Por debajo de los botones */
+  pointer-events: none; /* Para que puedas hacer clic en lo que haya debajo */
+  /* AJUSTE FINO: Si no queda exactamente encima, cambia este % */
+  margin-left: 2%;      
+}
 
-    .search-bar select {
-      flex: 0 0 120px;
-      border: none;
-      background: transparent;
-      font-weight: 600;
-      font-size: 0.95rem;
-      outline: none;
-      text-align-last: center;
-      padding: 8px 0;
-    }
+    /* BARRA DE BÚSQUEDA ACTUALIZADA */
+/* BARRA DE BÚSQUEDA - ESTRUCTURA GENERAL */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    /* Un radio de 10px a 12px da ese efecto entre cuadrado y redondo */
+    border-radius: 12px; 
+    width: 50%;
+    max-width: 600px;
+    height: 48px;
+    margin: 30px auto 0 auto;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    /* Importante: oculta lo que sobresalga de las esquinas */
+    overflow: hidden; 
+    border: none;
+}
 
-    .search-bar input {
-      flex: 1;
-      border: none;
-      padding: 10px;
-      font-size: 0.95rem;
-      outline: none;
-    }
+/* LADO IZQUIERDO: Selector Animes */
+.search-bar select {
+    flex: 0 0 140px;
+    height: 100%;
+    border: none;
+    background: #28a745;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem; /* Tamaño de letra */
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    
+    /* Bordes semi-redondeados (12px) */
+    border-radius: 12px 0 0 12px;
 
-    .search-bar button {
-      flex: 0 0 70px;
-      height: 100%;
-      border: none;
-      background: #28a745; 
-      border-radius: 0 18px 18px 0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 
-    .search-bar button img {
-      width: 20px;
-      height: 20px;
-      filter: brightness(0) invert(1);
-    }
+    /* Ajuste de espacio para centrar texto y flecha */
+    padding: 0 30px 0 10px;
+
+    /* FLECHA BLANCA ACTUALIZADA */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    
+    /* Posición de la flecha */
+    background-position: right 12px center; 
+    
+    /* TAMAÑO AJUSTADO: 
+       Cambiamos a 20px o 22px para que iguale visualmente a la letra */
+    background-size: 20px; 
+}
+
+/* Para que la letra siga siendo blanca al hacer click y dentro de las opciones */
+.search-bar select option {
+    background: white;
+    color: #222; /* Las opciones por dentro se leen mejor en negro */
+}
+
+/* Quitar el contorno celeste y poner el verde al hacer click */
+.search-bar input:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px #28a745; /* Contorno verde interno al escribir */
+}
+
+/* Asegurar que el select no cambie a celeste */
+.search-bar select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* BOTÓN DE LUPA - Restaurando el entorno verde redondeado */
+/* INPUT CENTRAL */
+.search-bar input {
+    flex: 1;
+    border: none;
+    padding: 0 15px;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+/* LADO DERECHO: Botón Lupa */
+.search-bar button {
+    flex: 0 0 65px;
+    height: 100%;
+    border: none;
+    background: #28a745;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* El truco: un margen negativo a la derecha para que el verde 
+       se pegue al borde final y no deje ver el fondo blanco */
+    margin-right: -1px; 
+    border-radius: 0 12px 12px 0;
+    outline: none;
+}
+
+.search-bar button img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+    display: block;
+    /* Eliminamos cualquier sombra o borde propio de la imagen */
+    border: none;
+}
 
     /* REDES SOCIALES Y PERSONAJES INTERCALADOS */
     .social-icons {
@@ -109,23 +182,25 @@
     }
 
     .social-icons a img {
-      width: 36px;
-      height: 36px;
-      margin-bottom: 12px; /* Sube los iconos para que no queden en el suelo */
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    /* SUBIR SOLO LOS ICONOS: Ajusta este margen negativo si los quieres más arriba */
+    margin-bottom: 45px; 
+}
 
     .social-icons a img:hover {
       transform: scale(1.2);
     }
 
     .personaje-social {
-      height: 85px;         
-      width: auto;
-      object-fit: contain;
-      pointer-events: none; 
-    }
+    height: 85px; 
+    width: auto;
+    object-fit: contain;
+    pointer-events: none;
+    margin-bottom: 0; /* Se quedan abajo */
+}
 
     /* =========================================================
        RESTO DE ESTILOS (PRODUCTOS Y MODAL)
@@ -285,6 +360,140 @@
         height: 110px;    /* Los hace más grandes */
       }
     }
+
+/* AJUSTE PARA VISTA MINIMIZADA (Notebook ventana pequeña) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    
+    /* 1. Contenedor Banner: Forzar que nada se escape */
+    .banner {
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* 2. Barra de búsqueda: Ajuste de ancho y visibilidad de lupa */
+    .search-bar {
+        width: 85% !important; 
+        max-width: 550px !important;
+        margin-top: 15px !important;
+        display: flex !important; /* Garantiza que select, input y button coexistan */
+    }
+
+    /* 3. Redes Sociales y Personajes: Alineación Total */
+    .social-icons {
+        width: 85% !important; /* Mismo ancho que la barra para alineación vertical */
+        max-width: 550px !important;
+        display: flex !important;
+        justify-content: space-between !important; /* Reparte: Facebook inicio, Instagram centro, TikTok final */
+        align-items: flex-end !important;
+        margin: 15px auto 0 auto !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Forzar que Facebook y todos los enlaces sean visibles */
+    .social-icons a {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        z-index: 20 !important;
+    }
+
+    .social-icons a img {
+        width: 32px !important; /* Un poco más pequeños para asegurar espacio */
+        height: 32px !important;
+        margin-bottom: 35px !important; /* Espacio para que los personajes quepan debajo */
+    }
+
+    /* 4. Personajes: Deku Oveja y Uraraka Gata nivelados */
+    .personaje-social {
+        height: 50px !important; /* Ajuste para que no choquen con los iconos */
+        width: auto !important;
+        margin-bottom: 0 !important;
+        position: relative !important;
+        bottom: 0 !important;
+        z-index: 15 !important;
+    }
+
+    /* Sincronización exacta de pies (Deku con Uraraka) */
+    img[alt="Deku"].personaje-social {
+        transform: translateY(3px) !important; /* Bajamos a Deku para igualar a Uraraka */
+    }
+
+    /* 5. Izuocha Adulto: Cubrimiento total a la izquierda */
+    .img-overlay {
+        position: absolute !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        height: 100% !important;
+        width: auto !important;
+        transform: none !important;
+        z-index: 1 !important;
+        object-fit: contain !important;
+        margin-left: -2px !important; /* Tapa cualquier filo de la imagen base */
+    }
+}
+
+/* AJUSTES EXCLUSIVOS PARA MÓVILES (Android/iPhone) */
+@media (max-width: 600px) {
+    
+    /* 1. Banner: Ajustar altura para que respire */
+    .banner {
+        height: 180px !important; /* Un poco más alto para dar espacio a los iconos */
+        overflow: hidden !important;
+    }
+
+    /* 2. Izuocha Adulto: Que no tape todo el centro */
+    .img-overlay {
+        height: 100% !important;
+        width: auto !important;
+        left: 0 !important;
+        margin-left: -10% !important; /* La pegamos a la izquierda */
+        opacity: 0.8; /* Opcional: un poco de transparencia para que no sature */
+    }
+
+    /* 3. Barra de búsqueda: Más pequeña y centrada */
+    .search-bar {
+        width: 90% !important; 
+        height: 38px !important; /* Más delgada para móvil */
+        margin: 10px auto 0 auto !important;
+        border-radius: 10px !important;
+    }
+
+    .search-bar select {
+        flex: 0 0 100px !important; /* Menos ancho para el verde de la izquierda */
+        font-size: 0.8rem !important;
+        background-size: 14px !important; /* Flecha más pequeña */
+    }
+
+    .search-bar input {
+        font-size: 0.8rem !important;
+    }
+
+    /* 4. Redes y Personajes: Organización compacta */
+    .social-icons {
+        width: 95% !important;
+        justify-content: space-around !important; /* Distribución uniforme */
+        margin-top: 5px !important;
+    }
+
+    .social-icons a img {
+        width: 28px !important; /* Iconos más pequeños */
+        height: 28px !important;
+        margin-bottom: 25px !important; /* Menos elevación */
+    }
+
+    /* 5. Deku y Uraraka versión mini */
+    .personaje-social {
+        height: 45px !important;
+        bottom: -2px !important;
+    }
+
+    /* Ocultar elementos que estorben (opcional) */
+    /* Si los personajes del fondo del banner original molestan, 
+       puedes ajustar el margin-left de .img-overlay hasta taparlos */
+}
     
   </style>
 </head>
@@ -292,7 +501,10 @@
 <body>
  
 <div class="banner">
+  <img src="images/IzuochaAdult.jpg" class="img-overlay" alt="Izuocha Adulto" />
+  
   <div class="search-bar">
+  
     <select id="categorySelect">
       <option value="all">Animes</option>
     </select>
@@ -302,16 +514,16 @@
     </button>
   </div>
 
-  <div class="social-icons">
-  <a href="https://facebook.com" target="_blank"><img src="images/iconFacebook.png" alt="Facebook" /></a>
-  
-  <img src="images/DekuSheep.png" class="personaje-social" alt="Deku" />
+ <div class="social-icons">
+    <a href="#"><img src="images/iconFacebook.png" alt="Facebook"></a>
+    
+    <img src="images/DekuSheep.png" class="personaje-social" alt="Deku">
 
-  <a href="https://instagram.com" target="_blank"><img src="images/iconInstagram.png" alt="Instagram" /></a>
+    <a href="#"><img src="images/iconInstagram.png" alt="Instagram"></a>
 
-  <img src="images/UrarakaCat.jpg" class="personaje-social" alt="Uraraka" />
+    <img src="images/UrarakaCat.jpg" class="personaje-social" alt="Uraraka">
 
-  <a href="https://tiktok.com" target="_blank"><img src="images/iconTiktok.png" alt="TikTok" /></a>
+    <a href="#"><img src="images/iconTiktok.png" alt="TikTok"></a>
 </div>
   
 </div>
