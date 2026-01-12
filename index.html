@@ -7,9 +7,11 @@
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
   <style>
+    
     /* =========================================================
                         Reset y variables
-    ========================================================== */
+       ========================================================= */
+    
     :root{
       --text:#1a1a1a;
       --muted:#6b6b6b;
@@ -34,7 +36,8 @@
 
     /* =========================================================
         BANNER Y BUSCADOR (ESTILO BASE)
-    ==========================================================*/
+       ========================================================= */
+    
     .banner {
       width: 100%;
       aspect-ratio: 4 / 1; 
@@ -161,7 +164,8 @@
 
     /* =========================================================
                     PANTALLA COMPLETA NOTEBOOK
-       ==========================================================*/
+       ========================================================= */
+    
     @media (max-width: 1100px) { .products { grid-template-columns: repeat(3, 1fr); } }
 
     @media (max-width: 900px) {
@@ -194,6 +198,7 @@
   /* ==========================================================
                    PANTALLA REDUCIDA NOTEBOOK
      ========================================================== */
+    
 @media (min-width: 601px) and (max-width: 1024px) { /* BLOQUE MEDIA QUERY */
     .banner { overflow: hidden !important; }        /* "Una mesa" Corta cualquier cosa que intente salir de los limites del banner*/
     
@@ -234,6 +239,7 @@
     /* =========================================================
                      PANTALLA VERTICAL ANDROID
        ========================================================= */
+    
     @media (max-width: 600px) {
         .banner {
             height: auto !important;
