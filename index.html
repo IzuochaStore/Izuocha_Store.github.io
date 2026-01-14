@@ -35,7 +35,7 @@
     }
 
     /* =========================================================
-        BANNER Y BUSCADOR (ESTILO BASE)
+                    BANNER Y BUSCADOR (ESTILO BASE)
        ========================================================= */
     
     .banner {
@@ -163,33 +163,53 @@
     }
 
     /* =========================================================
-                    PANTALLA COMPLETA NOTEBOOK
-       ========================================================= */
-    
-    @media (max-width: 1100px) { .products { grid-template-columns: repeat(3, 1fr); } }
+   PANTALLA COMPLETA NOTEBOOK (FUSIONADO)
+========================================================= */
 
-    @media (max-width: 900px) {
-      .products { grid-template-columns: repeat(2, 1fr); }
-      .modal .content { flex-direction: column; }
-      .carousel { min-height: 320px; }
-      .social-icons { width: 90%; }
-      .personaje-social { height: 60px; }
-    }
+/* 1. Ajuste global de las imágenes para que sean rectangulares (3:4) */
+.product img {
+  width: 100%;
+  aspect-ratio: 3 / 4; /* Esto les da la forma de "póster" que buscas */
+  object-fit: cover;   /* Evita que se deformen */
+  border-radius: 8px 8px 0 0;
+}
 
-    @media (min-width: 900px) {
-      .banner {
-        aspect-ratio: 6 / 1; 
-        background-image: url("images/BannerNotebook61.jpg");
-        gap: 16px;
-      }
-      .social-icons { margin-top: 5px; }
-      .personaje-social { height: 75px; }
-    }
+/* 2. Comportamiento de las columnas según el ancho */
+@media (min-width: 1101px) {
+  .products { 
+    grid-template-columns: repeat(4, 1fr) !important; /* Fuerza las 4 columnas */
+    gap: 16px; 
+  }
+}
 
-    @media (min-width: 1300px) {
-      .social-icons { margin-top: 35px; }
-      .personaje-social { height: 110px; }
-    }
+@media (max-width: 1100px) and (min-width: 901px) {
+  .products { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .products { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  .modal .content { flex-direction: column; }
+  .carousel { min-height: 320px; }
+  .social-icons { width: 90%; }
+  .personaje-social { height: 60px; }
+}
+
+/* 3. Ajustes de Banner y Redes que ya tenías */
+@media (min-width: 900px) {
+  .banner {
+    aspect-ratio: 6 / 1; 
+    background-image: url("images/BannerNotebook61.jpg");
+  }
+  .social-icons { margin-top: 5px; }
+  .personaje-social { height: 75px; }
+}
+
+@media (min-width: 1300px) {
+  .social-icons { margin-top: 35px; }
+  .personaje-social { height: 110px; }
+}
 
 
 
